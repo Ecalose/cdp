@@ -35,19 +35,9 @@ type RequestData struct {
 	IsLinkPreload    bool              `json:"isLinkPreload"`   //是否通过链路预加载加载。
 	PostDataEntries  []DataEntrie      `json:"postDataEntries"` //是否通过链路预加载加载。
 }
-type RouteData struct {
-	RequestId    string      `json:"requestId"`
-	Request      RequestData `json:"request"`
-	FrameId      string      `json:"frameId"`
-	NetworkId    string      `json:"networkId"`
-	ResourceType string      `json:"resourceType"`
-
-	ResponseErrorReason string   `json:"responseErrorReason"`
-	ResponseStatusCode  int      `json:"responseStatusCode"`
-	ResponseStatusText  string   `json:"responseStatusText"`
-	ResponseHeaders     []Header `json:"responseHeaders"`
+type DataEntrie struct {
+	Bytes string `json:"bytes"`
 }
-
 type Route struct {
 	webSock  *WebSock
 	recvData RouteData

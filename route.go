@@ -193,9 +193,15 @@ func (obj *Route) FulFill(ctx context.Context, fulDatas ...FulData) error {
 	}
 	return err
 }
-func (obj *Route) RequestContinue(ctx context.Context) (FulData, error) {
+func (obj *Route) RequestContinue(ctx context.Context, options ...RequestOption) (FulData, error) {
+	var option RequestOption
+	if len(options) > 0 {
+		option = options[0]
+	} else {
+		option = obj.NewRequestOption()
+	}
 	obj.isRoute = true
-	fulData, err := obj.Request(ctx, obj.NewRequestOption())
+	fulData, err := obj.Request(ctx, option)
 	if err != nil {
 		obj.Fail(ctx)
 	} else {

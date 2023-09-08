@@ -14,3 +14,8 @@ func (obj *WebSock) RuntimeEvaluate(ctx context.Context, expression string) (Rec
 		},
 	})
 }
+func (obj *WebSock) RuntimeEnable(ctx context.Context) (RecvData, error) {
+	return obj.send(ctx, commend{
+		Method: "Runtime.enable",
+	})
+}

@@ -2,6 +2,7 @@ package cdp
 
 import "context"
 
+//设置userAgent
 func (obj *WebSock) EmulationSetUserAgentOverride(preCtx context.Context, userAgent string) (RecvData, error) {
 	return obj.send(preCtx, commend{
 		Method: "Emulation.setUserAgentOverride",
@@ -23,6 +24,7 @@ type Device struct {
 	HasTouch          bool     `json:"has_touch"`
 }
 
+//设置屏幕显示
 func (obj *WebSock) EmulationSetDeviceMetricsOverride(preCtx context.Context, device Device) (RecvData, error) {
 	return obj.send(preCtx, commend{
 		Method: "Emulation.setDeviceMetricsOverride",
@@ -34,11 +36,96 @@ func (obj *WebSock) EmulationSetDeviceMetricsOverride(preCtx context.Context, de
 		},
 	})
 }
+
+//设置是否支持触摸
 func (obj *WebSock) EmulationSetTouchEmulationEnabled(preCtx context.Context, hasTouch bool) (RecvData, error) {
 	return obj.send(preCtx, commend{
 		Method: "Emulation.setTouchEmulationEnabled",
 		Params: map[string]any{
 			"enabled": hasTouch,
+		},
+	})
+}
+
+//设置地理位置
+func (obj *WebSock) EmulationSetGeolocationOverride(preCtx context.Context, latitude, longitude float64) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Emulation.setGeolocationOverride",
+		Params: map[string]any{
+			"latitude":  latitude,
+			"longitude": longitude,
+			"accuracy":  100,
+		},
+	})
+}
+
+//设置硬件并发数
+func (obj *WebSock) EmulationSetHardwareConcurrencyOverride(preCtx context.Context, hardwareConcurrency int) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Emulation.setHardwareConcurrencyOverride",
+		Params: map[string]any{
+			"hardwareConcurrency": hardwareConcurrency,
+		},
+	})
+}
+
+//允许覆盖自动化标志
+func (obj *WebSock) EmulationSetAutomationOverride(preCtx context.Context, enabled bool) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Emulation.setAutomationOverride",
+		Params: map[string]any{
+			"enabled": enabled,
+		},
+	})
+}
+
+//使用指定的区域设置覆盖默认主机系统区域设置。例如： en_US
+func (obj *WebSock) EmulationSetLocaleOverride(preCtx context.Context, locale string) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Emulation.setLocaleOverride",
+		Params: map[string]any{
+			"locale": locale,
+		},
+	})
+}
+
+//使用指定的时区覆盖默认主机系统时区。
+func (obj *WebSock) EmulationSetTimezoneOverride(preCtx context.Context, timezoneId string) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Emulation.setTimezoneOverride",
+		Params: map[string]any{
+			"timezoneId": timezoneId,
+		},
+	})
+}
+
+//是否应始终隐藏滚动条。
+func (obj *WebSock) EmulationSetScrollbarsHidden(preCtx context.Context, hidden bool) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Emulation.setScrollbarsHidden",
+		Params: map[string]any{
+			"hidden": hidden,
+		},
+	})
+}
+
+//设置指定的页面比例因子
+func (obj *WebSock) EmulationSetPageScaleFactor(preCtx context.Context, pageScaleFactor float64) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Emulation.setPageScaleFactor",
+		Params: map[string]any{
+			"pageScaleFactor": pageScaleFactor,
+		},
+	})
+}
+
+//设置空闲状态
+func (obj *WebSock) EmulationSetIdleOverride(preCtx context.Context, isUserActive, isScreenUnlocked bool) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Emulation.setIdleOverride",
+		Params: map[string]any{
+			"isUserActive":     isUserActive,     //用户是否活动
+			"isScreenUnlocked": isScreenUnlocked, //屏幕是否上锁
 		},
 	})
 }

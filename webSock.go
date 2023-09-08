@@ -4,12 +4,15 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"log"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
 
 	"gitee.com/baixudong/db"
 	"gitee.com/baixudong/requests"
+	"gitee.com/baixudong/tools"
 	"gitee.com/baixudong/websocket"
 )
 
@@ -99,6 +102,9 @@ func (obj *WebSock) routeMain(ctx context.Context, recvData RecvData) {
 }
 
 func (obj *WebSock) recv(ctx context.Context, rd RecvData) error {
+	if strings.HasPrefix(rd.Method, "Runtime") {
+		log.Print(tools.Any2json(rd))
+	}
 	defer recover()
 	cmdDataAny, ok := obj.ids.LoadAndDelete(rd.Id)
 	if ok {

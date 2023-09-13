@@ -163,8 +163,8 @@ func (obj *Route) Request(ctx context.Context, routeOption RequestOption, option
 	var fulData FulData
 	var err error
 	routeKey := keyMd5(routeOption, resourceType)
-	if obj.webSock.option.DataCache {
-		if fulData, err = obj.webSock.db.Get(routeKey); err == nil { //如果有緩存
+	if obj.webSock.db != nil {
+		if err = obj.webSock.db.GetWithType(routeKey[:], &fulData); err == nil { //如果有緩存
 			return fulData, err
 		}
 	}
@@ -176,8 +176,8 @@ func (obj *Route) Request(ctx context.Context, routeOption RequestOption, option
 	fulData.Body = rs.Text()
 	fulData.Headers = rs.Headers()
 	fulData.ResponsePhrase = rs.Status()
-	if obj.webSock.option.DataCache && fulData.StatusCode == 200 && fulData.Body != "" && routeOption.Method == "GET" {
-		obj.webSock.db.Put(routeKey, fulData)
+	if obj.webSock.db != nil && fulData.StatusCode == 200 && fulData.Body != "" && routeOption.Method == "GET" {
+		obj.webSock.db.Set(routeKey[:], fulData)
 	}
 	return fulData, nil
 }

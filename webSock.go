@@ -35,7 +35,7 @@ type RecvData struct {
 
 type WebSock struct {
 	option       WebSockOption
-	db           *db.Client[FulData]
+	db           *db.Client
 	ids          sync.Map
 	conn         *websocket.Conn
 	ctx          context.Context
@@ -147,11 +147,10 @@ func (obj *WebSock) recvMain() (err error) {
 
 type WebSockOption struct {
 	Proxy            string
-	DataCache        bool //开启数据缓存
 	IsReplaceRequest bool
 }
 
-func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string, option WebSockOption, db *db.Client[FulData]) (*WebSock, error) {
+func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string, option WebSockOption, db *db.Client) (*WebSock, error) {
 	response, err := globalReqCli.Request(preCtx, "get", ws, requests.RequestOption{DisProxy: true})
 	if err != nil {
 		return nil, err

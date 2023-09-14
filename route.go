@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"sort"
 	"strconv"
 	"time"
 
@@ -13,7 +12,6 @@ import (
 	"gitee.com/baixudong/re"
 	"gitee.com/baixudong/requests"
 	"gitee.com/baixudong/tools"
-	"golang.org/x/exp/maps"
 )
 
 type RequestOption struct {
@@ -119,30 +117,41 @@ func (obj *Route) Headers() http.Header {
 func (obj *Route) Cookies() (requests.Cookies, error) {
 	return requests.ReadCookies(obj.Headers())
 }
-func keyMd5(key RequestOption, resourceType string) [16]byte {
-	var md5Str string
+
+func (obj *Route) GetCacheKey(routeOption RequestOption) []byte {
+	var keyStr string
 	nt := strconv.Itoa(int(time.Now().Unix() / 1000))
-	key.Url = re.Sub(fmt.Sprintf(`=%s\d*?&`, nt), "=&", key.Url)
-	key.Url = re.Sub(fmt.Sprintf(`=%s\d*?$`, nt), "=", key.Url)
 
-	key.Url = re.Sub(fmt.Sprintf(`=%s\d*?\.\d+?&`, nt), "=&", key.Url)
-	key.Url = re.Sub(fmt.Sprintf(`=%s\d*?\.\d+?$`, nt), "=", key.Url)
-
-	key.Url = re.Sub(`=0\.\d{10,}&`, "=&", key.Url)
-	key.Url = re.Sub(`=0\.\d{10,}$`, "=", key.Url)
-	md5Str += fmt.Sprintf("%s,%s,%s", key.Method, key.Url, key.PostData)
-
-	switch resourceType {
-	case "Document", "XHR", "Fetch", "Other":
-		kks := maps.Keys(key.Headers)
-		sort.Strings(kks)
-		for _, k := range kks {
-			md5Str += fmt.Sprintf("%s,%s", k, key.Headers[k])
-		}
-	}
-	return tools.Md5(md5Str)
+	keyStr = re.Sub(fmt.Sprintf(`=%s\d*?&`, nt), "=&", keyStr)
+	keyStr = re.Sub(fmt.Sprintf(`=%s\d*?$`, nt), "=", keyStr)
+	keyStr = re.Sub(fmt.Sprintf(`=%s\d*?\.\d+?&`, nt), "=&", keyStr)
+	keyStr = re.Sub(fmt.Sprintf(`=%s\d*?\.\d+?$`, nt), "=", keyStr)
+	keyStr = re.Sub(`=0\.\d{10,}&`, "=&", keyStr)
+	keyStr = re.Sub(`=0\.\d{10,}$`, "=", keyStr)
+	md5Str := tools.Md5(fmt.Sprintf("%s,%s,%s", routeOption.Method, keyStr, routeOption.PostData))
+	return md5Str[:]
 }
-func (obj *Route) Request(ctx context.Context, routeOption RequestOption, options ...requests.RequestOption) (FulData, error) {
+func (obj *Route) GetCacheDataWithRequest(ctx context.Context, routeOption RequestOption) (fulData FulData, err error) {
+	if obj.webSock.db == nil {
+		return
+	}
+	err = obj.webSock.db.GetWithType(obj.GetCacheKey(routeOption), &fulData)
+	return
+}
+func (obj *Route) GetCacheData(ctx context.Context, key []byte) (fulData FulData, err error) {
+	if obj.webSock.db == nil {
+		return
+	}
+	err = obj.webSock.db.GetWithType(key, &fulData)
+	return
+}
+func (obj *Route) SetCacheData(ctx context.Context, key []byte, fulData FulData) (err error) {
+	if obj.webSock.db != nil {
+		err = obj.webSock.db.Set(key, fulData)
+	}
+	return
+}
+func (obj *Route) Request(ctx context.Context, routeOption RequestOption, options ...requests.RequestOption) (fulData FulData, err error) {
 	option := requests.RequestOption{
 		Proxy: obj.webSock.option.Proxy,
 	}
@@ -153,21 +162,6 @@ func (obj *Route) Request(ctx context.Context, routeOption RequestOption, option
 		option.Raw = routeOption.PostData
 	}
 	option.Headers = routeOption.Headers
-	resourceType := obj.ResourceType()
-	switch resourceType {
-	case "Document", "XHR", "Script", "Fetch", "Other":
-		option.TryNum = 2
-	default:
-		option.TryNum = 1
-	}
-	var fulData FulData
-	var err error
-	routeKey := keyMd5(routeOption, resourceType)
-	if obj.webSock.db != nil {
-		if err = obj.webSock.db.GetWithType(routeKey[:], &fulData); err == nil { //如果有緩存
-			return fulData, err
-		}
-	}
 	rs, err := obj.webSock.reqCli.Request(ctx, routeOption.Method, routeOption.Url, option)
 	if err != nil {
 		return fulData, err
@@ -176,10 +170,7 @@ func (obj *Route) Request(ctx context.Context, routeOption RequestOption, option
 	fulData.Body = rs.Text()
 	fulData.Headers = rs.Headers()
 	fulData.ResponsePhrase = rs.Status()
-	if obj.webSock.db != nil && fulData.StatusCode == 200 && fulData.Body != "" && routeOption.Method == "GET" {
-		obj.webSock.db.Set(routeKey[:], fulData)
-	}
-	return fulData, nil
+	return
 }
 func (obj *Route) FulFill(ctx context.Context, fulDatas ...FulData) error {
 	obj.isRoute = true

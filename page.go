@@ -35,7 +35,7 @@ func (obj *WebSock) PageCaptureScreenshot(ctx context.Context, rect Rect, option
 		option = options[0]
 	}
 	if option.Format == "" {
-		option.Format = "png"
+		option.Format = "webp"
 	}
 	params := map[string]any{
 		"format":                option.Format,

@@ -119,9 +119,8 @@ func (obj *Route) Cookies() (requests.Cookies, error) {
 }
 
 func (obj *Route) GetCacheKey(routeOption RequestOption) []byte {
-	var keyStr string
+	keyStr := routeOption.Url
 	nt := strconv.Itoa(int(time.Now().Unix() / 1000))
-
 	keyStr = re.Sub(fmt.Sprintf(`=%s\d*?&`, nt), "=&", keyStr)
 	keyStr = re.Sub(fmt.Sprintf(`=%s\d*?$`, nt), "=", keyStr)
 	keyStr = re.Sub(fmt.Sprintf(`=%s\d*?\.\d+?&`, nt), "=&", keyStr)
@@ -129,23 +128,16 @@ func (obj *Route) GetCacheKey(routeOption RequestOption) []byte {
 	keyStr = re.Sub(`=0\.\d{10,}&`, "=&", keyStr)
 	keyStr = re.Sub(`=0\.\d{10,}$`, "=", keyStr)
 	md5Str := tools.Md5(fmt.Sprintf("%s,%s,%s", routeOption.Method, keyStr, routeOption.PostData))
-	return md5Str[:]
+	return tools.StringToBytes(tools.Hex(md5Str))
 }
-func (obj *Route) GetCacheDataWithRequest(ctx context.Context, routeOption RequestOption) (fulData FulData, err error) {
-	if obj.webSock.db == nil {
-		return
-	}
-	err = obj.webSock.db.GetWithType(obj.GetCacheKey(routeOption), &fulData)
-	return
-}
-func (obj *Route) GetCacheData(ctx context.Context, key []byte) (fulData FulData, err error) {
+func (obj *Route) GetCacheData(key []byte) (fulData FulData, err error) {
 	if obj.webSock.db == nil {
 		return
 	}
 	err = obj.webSock.db.GetWithType(key, &fulData)
 	return
 }
-func (obj *Route) SetCacheData(ctx context.Context, key []byte, fulData FulData) (err error) {
+func (obj *Route) SetCacheData(key []byte, fulData FulData) (err error) {
 	if obj.webSock.db != nil {
 		err = obj.webSock.db.Set(key, fulData)
 	}

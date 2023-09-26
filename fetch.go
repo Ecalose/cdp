@@ -5,6 +5,7 @@ import (
 
 	"net/http"
 
+	"gitee.com/baixudong/requests"
 	"gitee.com/baixudong/tools"
 )
 
@@ -98,7 +99,7 @@ func (obj *WebSock) FetchGetResponseBody(preCtx context.Context, requestId strin
 func (obj *WebSock) FetchFulfillRequest(preCtx context.Context, requestId string, fulData FulData) (RecvData, error) {
 	if fulData.Headers == nil {
 		fulData.Headers = http.Header{
-			"Content-Type": []string{tools.GetContentTypeWithBytes(tools.StringToBytes(fulData.Body))},
+			"Content-Type": []string{requests.GetContentTypeWithBytes(tools.StringToBytes(fulData.Body))},
 		}
 	}
 	headers := []struct {

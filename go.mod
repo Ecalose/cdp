@@ -1,22 +1,23 @@
 module gitee.com/baixudong/cdp
 
-go 1.21.0
+go 1.21.1
 
 require (
-	gitee.com/baixudong/db v0.0.0-20230913035524-f73eea9bc2e0
+	gitee.com/baixudong/bson v0.0.0-20230926055556-209f126c0a34
+	gitee.com/baixudong/db v0.0.0-20230923032137-923afbdf8c04
 	gitee.com/baixudong/re v0.0.0-20230809033040-360c1d945e59
-	gitee.com/baixudong/requests v0.0.0-20230913085841-24f5a7a650ea
-	gitee.com/baixudong/tools v0.0.0-20230905085451-d080a77e3eb5
-	gitee.com/baixudong/websocket v0.0.0-20230821075043-d36a43fd76a3
+	gitee.com/baixudong/requests v0.0.0-20230926055737-621d0f26beed
+	gitee.com/baixudong/tools v0.0.0-20230926010219-77f29cbf5935
+	gitee.com/baixudong/websocket v0.0.0-20230926055450-da2e1353b599
 )
 
 require (
-	gitee.com/baixudong/bar v0.0.0-20230814072341-e111c30a1386 // indirect
-	gitee.com/baixudong/blog v0.0.0-20230814072403-43ebd899d6fd // indirect
-	gitee.com/baixudong/bs4 v0.0.0-20230814072447-945ab1fd97ed // indirect
-	gitee.com/baixudong/ja3 v0.0.0-20230913080728-e3b7c48ce24d // indirect
+	gitee.com/baixudong/bar v0.0.0-20230923032414-c19cc384edeb // indirect
+	gitee.com/baixudong/blog v0.0.0-20230923032533-d83e7cb672f7 // indirect
+	gitee.com/baixudong/bs4 v0.0.0-20230923032731-cc82de4893bd // indirect
+	gitee.com/baixudong/ja3 v0.0.0-20230923032211-164f4a779e92 // indirect
 	gitee.com/baixudong/kinds v0.0.0-20230809033013-c3d6d3479f8c // indirect
-	gitee.com/baixudong/net v0.0.0-20230905022950-d3a73f7bf4cc // indirect
+	gitee.com/baixudong/net v0.0.0-20230923032225-d53725e7011a // indirect
 	github.com/PuerkitoBio/goquery v1.8.1 // indirect
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/andybalholm/cascadia v1.3.2 // indirect
@@ -44,11 +45,12 @@ require (
 	github.com/onsi/gomega v1.27.10 // indirect
 	github.com/pelletier/go-toml/v2 v2.1.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/quic-go/quic-go v0.38.1 // indirect
+	github.com/quic-go/quic-go v0.39.0 // indirect
 	github.com/refraction-networking/utls v1.5.3 // indirect
-	github.com/tidwall/gjson v1.16.0 // indirect
+	github.com/tidwall/gjson v1.17.0 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
+	go.mongodb.org/mongo-driver v1.12.1 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect

@@ -9,6 +9,8 @@ gitee.com/baixudong/bson v0.0.0-20230926055556-209f126c0a34 h1:s3VYx86Nh3khU3m2A
 gitee.com/baixudong/bson v0.0.0-20230926055556-209f126c0a34/go.mod h1:dPr7kBl98n0KQ4pseNdKjUWSI5Bz+0Cow9w2PJvYXJ4=
 gitee.com/baixudong/db v0.0.0-20230923032137-923afbdf8c04 h1:1DME9esQSLhgnXZ40ph5ARaWbPX4mJBqN2mwkZYy2KA=
 gitee.com/baixudong/db v0.0.0-20230923032137-923afbdf8c04/go.mod h1:tyBdx7sBo7tEK8Vtzul3Gv74BZZDUPDGRzP1ME0nquY=
+gitee.com/baixudong/gson v0.0.0-20230927054719-a259dd672035 h1:QE2dgoo2l491fl5UwADXEKz/QEhwcSauzy8IgrIzd0M=
+gitee.com/baixudong/gson v0.0.0-20230927054719-a259dd672035/go.mod h1:4CvQFvuGOT5ZOTHao1004v91EOvQGy8UinMl9Nna+7c=
 gitee.com/baixudong/ja3 v0.0.0-20230923032211-164f4a779e92 h1:NsVQh2jjeqDTnGJFDVcRuUCPqUFkmJIFqZ2jbPqbsgM=
 gitee.com/baixudong/ja3 v0.0.0-20230923032211-164f4a779e92/go.mod h1:FCRp6/ZVtb/3MLMgDk1kUo1+D8sHb46PbSj5JSKPbsc=
 gitee.com/baixudong/kinds v0.0.0-20230809033013-c3d6d3479f8c h1:MZewpjU0+82TcA+nHrcAbbgZhTCqVH2I5zwYBWJ4v54=
@@ -21,8 +23,8 @@ gitee.com/baixudong/requests v0.0.0-20230926060444-4935ccc458f9 h1:j63B6CGF38QkF
 gitee.com/baixudong/requests v0.0.0-20230926060444-4935ccc458f9/go.mod h1:Y1YS1RB+QoWV7011VzbGvCSSUkYaHRgVpGLf2aVI0lI=
 gitee.com/baixudong/tools v0.0.0-20230926010219-77f29cbf5935 h1:+RccqXXfx7yPpwc7Q13z8YZlXFTtqh+A8tlsfd00jS4=
 gitee.com/baixudong/tools v0.0.0-20230926010219-77f29cbf5935/go.mod h1:nGjhspfGKu9Z6knMz0i0riNzk8Q7kmv46qRl+6Wx+rY=
-gitee.com/baixudong/websocket v0.0.0-20230926055450-da2e1353b599 h1:6tivzPEixmTKmtuyTwIKJem9kW0QFtcycavxhwczqgQ=
-gitee.com/baixudong/websocket v0.0.0-20230926055450-da2e1353b599/go.mod h1:sAnDLQ25mfVFMaXDh3jNz0tSfsQcx9Ypz9H1/bBXjx0=
+gitee.com/baixudong/websocket v0.0.0-20230927034519-3bef09dccc0f h1:5pNTbBTxEI5Y/7pfj3sxIA7Y8lo2mmwUBR4fvb84Pj8=
+gitee.com/baixudong/websocket v0.0.0-20230927034519-3bef09dccc0f/go.mod h1:xssNQqf5z/f2q8ynj6s5spstYN7JwnlBMLvboA5OTgM=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/PuerkitoBio/goquery v1.8.1 h1:uQxhNlArOIdbrH1tr0UXwdVFgDcZDrZVdcpygAcwmWM=
 github.com/PuerkitoBio/goquery v1.8.1/go.mod h1:Q8ICL1kNUJ2sXGoAhPGUdYDJvgQgHzJsnnd3H7Ho5jQ=
@@ -73,9 +75,8 @@ github.com/gin-gonic/gin v1.9.1/go.mod h1:hPrL7YrpYKXt5YId3A/Tnip5kqbEAP+KLuI3SU
 github.com/go-logr/logr v1.2.4 h1:g01GSCwiDw2xSZfjJ2/T9M+S6pFdcNtFYsp+Y43HYDQ=
 github.com/go-logr/logr v1.2.4/go.mod h1:jdQByPbusPIv2/zmleS9BjJVeZ6kBagPoEUsqbVz/1A=
 github.com/go-playground/assert/v2 v2.0.1/go.mod h1:VDjEfimB/XKnb+ZQfWdccd7VUvScMdVu0Titje2rxJ4=
+github.com/go-playground/locales v0.13.0 h1:HyWk6mgj5qFqCT5fjGBuRArbVDfE4hi8+e8ceBS/t7Q=
 github.com/go-playground/locales v0.13.0/go.mod h1:taPMhCMXrRLJO55olJkUXHZBHCxTMfnGwq/HNwmWNS8=
-github.com/go-playground/locales v0.14.1 h1:EWaQ/wswjilfKLTECiXz7Rh+3BjFhfDFKv/oXslEjJA=
-github.com/go-playground/locales v0.14.1/go.mod h1:hxrqLVvrK65+Rwrd5Fc6F2O76J/NuW9t0sjnWqG1slY=
 github.com/go-playground/universal-translator v0.17.0/go.mod h1:UkSxE5sNxxRwHyU+Scu5vgOQjsIJAF8j9muTVoKLVtA=
 github.com/go-playground/universal-translator v0.18.1 h1:Bcnm0ZwsGyWbCzImXv+pAJnYK9S473LQFuzCbDbfSFY=
 github.com/go-playground/universal-translator v0.18.1/go.mod h1:xekY+UJKNuX9WP91TpwSH2VMlDf28Uj24BCp08ZFTUY=

@@ -9,7 +9,7 @@ import (
 
 	"net/http"
 
-	"gitee.com/baixudong/bson"
+	"gitee.com/baixudong/gson"
 	"gitee.com/baixudong/re"
 	"gitee.com/baixudong/requests"
 	"gitee.com/baixudong/tools"
@@ -211,7 +211,7 @@ func (obj *Route) ResponseBody(ctx context.Context) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	jsonData, err := bson.Decode(rs.Result)
+	jsonData, err := gson.Decode(rs.Result)
 	if err != nil {
 		return "", err
 	}

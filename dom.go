@@ -2,8 +2,79 @@ package cdp
 
 import (
 	"context"
+
+	"gitee.com/baixudong/gson"
+	"golang.org/x/net/html"
 )
 
+type NodeType int64
+
+var (
+	NodeTypeElement               NodeType = 1
+	NodeTypeAttribute             NodeType = 2
+	NodeTypeText                  NodeType = 3
+	NodeTypeCDATA                 NodeType = 4
+	NodeTypeEntityReference       NodeType = 5
+	NodeTypeEntity                NodeType = 6
+	NodeTypeProcessingInstruction NodeType = 7
+	NodeTypeComment               NodeType = 8
+	NodeTypeDocument              NodeType = 9
+	NodeTypeDocumentType          NodeType = 10
+	NodeTypeDocumentFragment      NodeType = 11
+	NodeTypeNotation              NodeType = 12
+)
+
+func (obj NodeType) HtmlNodeType() html.NodeType {
+	switch obj {
+	case NodeTypeElement:
+		return html.ElementNode
+	case NodeTypeText:
+		return html.TextNode
+	case NodeTypeComment:
+		return html.CommentNode
+	case NodeTypeDocument:
+		return html.DocumentNode
+	case NodeTypeDocumentType:
+		return html.DoctypeNode
+	default:
+		return html.RawNode
+	}
+}
+func ParseJsonDom(data *gson.Client) *html.Node {
+	attributes := data.Get("attributes").Array()
+	attrs := []html.Attribute{}
+	for i := 0; i < len(attributes)/2; i++ {
+		attrs = append(attrs, html.Attribute{
+			Key: attributes[i*2].String(),
+			Val: attributes[i*2+1].String(),
+		})
+	}
+
+	attrs = append(attrs, html.Attribute{Key: "gospiderNodeId", Val: data.Get("nodeId").String()})
+	// attrs = append(attrs, html.Attribute{Key: "gospiderBackendNodeId", Val:  data.Get("backendNodeId").String()})
+
+	nodeType := NodeType(data.Get("nodeType").Int())
+	curNode := &html.Node{Type: nodeType.HtmlNodeType(), Attr: attrs}
+	switch nodeType {
+	case NodeTypeText:
+		curNode.Data = data.Get("nodeValue").String()
+	default:
+		if curNode.Data = data.Get("nodeValue").String(); curNode.Data == "" {
+			curNode.Data = data.Get("localName").String()
+		}
+	}
+	for _, children := range data.Get("children").Array() {
+		if node := ParseJsonDom(children); node != nil {
+			curNode.AppendChild(node)
+		}
+	}
+	for _, children := range data.Get("contentDocument.children").Array() {
+		if node := ParseJsonDom(children); node != nil {
+			curNode.AppendChild(node)
+		}
+	}
+	return curNode
+}
 func (obj *WebSock) DOMEnable(ctx context.Context) (RecvData, error) {
 	return obj.send(ctx, commend{
 		Method: "DOM.enable",
@@ -109,6 +180,15 @@ func (obj *WebSock) DOMGetDocument(ctx context.Context) (RecvData, error) {
 		Method: "DOM.getDocument",
 		Params: map[string]any{
 			"depth": 0,
+		},
+	})
+}
+func (obj *WebSock) DOMGetDocuments(ctx context.Context) (RecvData, error) {
+	return obj.send(ctx, commend{
+		Method: "DOM.getDocument",
+		Params: map[string]any{
+			"depth":  -1,
+			"pierce": true,
 		},
 	})
 }

@@ -16,7 +16,6 @@ require (
 	gitee.com/baixudong/bar v0.0.0-20230923032414-c19cc384edeb // indirect
 	gitee.com/baixudong/blog v0.0.0-20230923032533-d83e7cb672f7 // indirect
 	gitee.com/baixudong/bs4 v0.0.0-20230923032731-cc82de4893bd // indirect
-	gitee.com/baixudong/bson v0.0.0-20230926055556-209f126c0a34 // indirect
 	gitee.com/baixudong/ja3 v0.0.0-20230923032211-164f4a779e92 // indirect
 	gitee.com/baixudong/kinds v0.0.0-20230809033013-c3d6d3479f8c // indirect
 	gitee.com/baixudong/net v0.0.0-20230923032225-d53725e7011a // indirect
@@ -30,17 +29,21 @@ require (
 	github.com/dgraph-io/ristretto v0.1.1 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/gaukas/godicttls v0.0.4 // indirect
+	github.com/go-playground/locales v0.14.1 // indirect
+	github.com/gobwas/ws v1.2.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/glog v1.1.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/flatbuffers v23.5.26+incompatible // indirect
+	github.com/google/pprof v0.0.0-20230926050212-f7f687d19a98 // indirect
 	github.com/google/uuid v1.3.1 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.17.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
+	github.com/onsi/ginkgo/v2 v2.12.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/quic-go/quic-go v0.39.0 // indirect
 	github.com/refraction-networking/utls v1.5.3 // indirect

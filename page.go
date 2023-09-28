@@ -18,7 +18,8 @@ func (obj *WebSock) PageAddScriptToEvaluateOnNewDocument(ctx context.Context, so
 	return obj.send(ctx, commend{
 		Method: "Page.addScriptToEvaluateOnNewDocument",
 		Params: map[string]any{
-			"source": source,
+			"source":         source,
+			"runImmediately": true, //立即运行
 		},
 	})
 }

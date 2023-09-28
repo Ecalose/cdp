@@ -4,30 +4,34 @@ go 1.21.1
 
 require (
 	gitee.com/baixudong/db v0.0.0-20230923032137-923afbdf8c04
-	gitee.com/baixudong/gson v0.0.0-20230927054719-a259dd672035
+	gitee.com/baixudong/gson v0.0.0-20230927090937-556b58fb6899
 	gitee.com/baixudong/re v0.0.0-20230809033040-360c1d945e59
-	gitee.com/baixudong/requests v0.0.0-20230927080706-33c51ed9ac32
+	gitee.com/baixudong/requests v0.0.0-20230928014539-90e3fbcfe826
 	gitee.com/baixudong/tools v0.0.0-20230926010219-77f29cbf5935
-	gitee.com/baixudong/websocket v0.0.0-20230927034519-3bef09dccc0f
+	gitee.com/baixudong/websocket v0.0.0-20230927082325-5b4eb178c3ec
 	golang.org/x/net v0.15.0
 )
 
 require (
 	gitee.com/baixudong/bar v0.0.0-20230923032414-c19cc384edeb // indirect
 	gitee.com/baixudong/blog v0.0.0-20230923032533-d83e7cb672f7 // indirect
-	gitee.com/baixudong/bs4 v0.0.0-20230927062753-f5145bca0107 // indirect
+	gitee.com/baixudong/bs4 v0.0.0-20230927091031-00dd545f5784 // indirect
 	gitee.com/baixudong/ja3 v0.0.0-20230927070510-152bc4a3675a // indirect
 	gitee.com/baixudong/kinds v0.0.0-20230809033013-c3d6d3479f8c // indirect
-	gitee.com/baixudong/net v0.0.0-20230923032225-d53725e7011a // indirect
+	gitee.com/baixudong/net v0.0.0-20230927083058-4a6a7a20f917 // indirect
 	github.com/PuerkitoBio/goquery v1.8.1 // indirect
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/andybalholm/cascadia v1.3.2 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
+	github.com/chenzhuoyu/iasm v0.9.0 // indirect
 	github.com/cloudflare/circl v1.3.3 // indirect
 	github.com/dgraph-io/badger/v4 v4.2.0 // indirect
 	github.com/dgraph-io/ristretto v0.1.1 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/gaukas/godicttls v0.0.4 // indirect
+	github.com/go-playground/locales v0.14.1 // indirect
+	github.com/gobwas/httphead v0.1.0 // indirect
+	github.com/gobwas/pool v0.2.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/glog v1.1.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
@@ -45,6 +49,7 @@ require (
 	github.com/tidwall/gjson v1.17.0 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
+	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	go.mongodb.org/mongo-driver v1.12.1 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect

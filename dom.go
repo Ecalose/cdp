@@ -5,6 +5,7 @@ import (
 
 	"gitee.com/baixudong/gson"
 	"golang.org/x/net/html"
+	"golang.org/x/net/html/atom"
 )
 
 type NodeType int64
@@ -49,15 +50,15 @@ func ParseJsonDom(data *gson.Client) *html.Node {
 			Val: attributes[i*2+1].String(),
 		})
 	}
-
 	attrs = append(attrs, html.Attribute{Key: "gospiderNodeId", Val: data.Get("nodeId").String()})
-	// attrs = append(attrs, html.Attribute{Key: "gospiderBackendNodeId", Val:  data.Get("backendNodeId").String()})
-
 	nodeType := NodeType(data.Get("nodeType").Int())
 	curNode := &html.Node{Type: nodeType.HtmlNodeType(), Attr: attrs}
+	curNode.DataAtom = atom.Lookup(data.Get("localName").Bytes())
 	switch nodeType {
 	case NodeTypeText:
 		curNode.Data = data.Get("nodeValue").String()
+	case NodeTypeElement:
+		curNode.Data = data.Get("localName").String()
 	default:
 		if curNode.Data = data.Get("nodeValue").String(); curNode.Data == "" {
 			curNode.Data = data.Get("localName").String()

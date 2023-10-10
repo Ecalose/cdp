@@ -2,16 +2,12 @@ package cdp
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
-	"log"
-	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
 
 	"gitee.com/baixudong/db"
-	"gitee.com/baixudong/gson"
 	"gitee.com/baixudong/requests"
 	"gitee.com/baixudong/websocket"
 )
@@ -34,17 +30,15 @@ type RecvData struct {
 }
 
 type WebSock struct {
-	option       WebSockOption
-	db           *db.Client
-	ids          sync.Map
-	conn         *websocket.Conn
-	ctx          context.Context
-	cnl          context.CancelCauseFunc
-	id           atomic.Int64
-	RequestFunc  func(context.Context, *Route)
-	ResponseFunc func(context.Context, *Route)
-	reqCli       *requests.Client
-	onEvents     sync.Map
+	option   WebSockOption
+	db       *db.Client
+	conn     *websocket.Conn
+	ctx      context.Context
+	cnl      context.CancelCauseFunc
+	id       atomic.Int64
+	reqCli   *requests.Client
+	ids      sync.Map
+	onEvents sync.Map
 }
 
 type RouteData struct {
@@ -63,48 +57,9 @@ type RouteData struct {
 func (obj *WebSock) Done() <-chan struct{} {
 	return obj.ctx.Done()
 }
-func (obj *WebSock) routeMain(ctx context.Context, recvData RecvData) {
-	routeData := RouteData{}
-	temData, err := json.Marshal(recvData.Params)
-	if err == nil && json.Unmarshal(temData, &routeData) == nil {
-		route := &Route{
-			webSock:  obj,
-			recvData: routeData,
-		}
-		if route.IsResponse() {
-			if obj.ResponseFunc != nil {
-				obj.ResponseFunc(ctx, route)
-				if !route.isRoute {
-					if obj.option.IsReplaceRequest {
-						route.RequestContinue(ctx)
-					} else {
-						route.Continue(ctx)
-					}
-				}
-			} else {
-				route.Continue(ctx)
-			}
-		} else {
-			if obj.RequestFunc != nil {
-				obj.RequestFunc(ctx, route)
-				if !route.isRoute {
-					if obj.option.IsReplaceRequest {
-						route.RequestContinue(ctx)
-					} else {
-						route.Continue(ctx)
-					}
-				}
-			} else {
-				route.Continue(ctx)
-			}
-		}
-	}
-}
 
 func (obj *WebSock) recv(ctx context.Context, rd RecvData) error {
-	if strings.HasPrefix(rd.Method, "Runtime") {
-		log.Print(gson.Decode(rd))
-	}
+	// log.Print(gson.Decode(rd))
 	defer recover()
 	cmdDataAny, ok := obj.ids.LoadAndDelete(rd.Id)
 	if ok {
@@ -146,8 +101,7 @@ func (obj *WebSock) recvMain() (err error) {
 }
 
 type WebSockOption struct {
-	Proxy            string
-	IsReplaceRequest bool
+	Proxy string
 }
 
 func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string, option WebSockOption, db *db.Client) (*WebSock, error) {
@@ -164,7 +118,6 @@ func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string
 	}
 	cli.ctx, cli.cnl = context.WithCancelCause(preCtx)
 	go cli.recvMain()
-	cli.AddEvent("Fetch.requestPaused", cli.routeMain)
 	return cli, err
 }
 func (obj *WebSock) AddEvent(method string, fun func(ctx context.Context, rd RecvData)) {

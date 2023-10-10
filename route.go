@@ -40,9 +40,15 @@ type DataEntrie struct {
 type Route struct {
 	webSock  *WebSock
 	recvData RouteData
-	isRoute  bool
+	used     bool
 }
 
+func NewRoute(webSock *WebSock, recvData RouteData) *Route {
+	return &Route{webSock: webSock, recvData: recvData}
+}
+func (obj *Route) Used() bool {
+	return obj.used
+}
 func (obj *Route) IsResponse() bool {
 	if obj.recvData.ResponseErrorReason != "" ||
 		obj.recvData.ResponseStatusCode != 0 || obj.recvData.ResponseStatusText != "" ||
@@ -132,16 +138,11 @@ func (obj *Route) GetCacheKey(routeOption RequestOption) []byte {
 	return tools.StringToBytes(tools.Hex(md5Str))
 }
 func (obj *Route) GetCacheData(key []byte) (fulData FulData, err error) {
-	if obj.webSock.db == nil {
-		return
-	}
 	err = obj.webSock.db.GetWithType(key, &fulData)
 	return
 }
 func (obj *Route) SetCacheData(key []byte, fulData FulData) (err error) {
-	if obj.webSock.db != nil {
-		err = obj.webSock.db.Set(key, fulData)
-	}
+	err = obj.webSock.db.Set(key, fulData)
 	return
 }
 func (obj *Route) Request(ctx context.Context, routeOption RequestOption, options ...requests.RequestOption) (fulData FulData, err error) {
@@ -166,7 +167,7 @@ func (obj *Route) Request(ctx context.Context, routeOption RequestOption, option
 	return
 }
 func (obj *Route) FulFill(ctx context.Context, fulDatas ...FulData) error {
-	obj.isRoute = true
+	obj.used = true
 	var fulData FulData
 	if len(fulDatas) > 0 {
 		fulData = fulDatas[0]
@@ -184,7 +185,7 @@ func (obj *Route) RequestContinue(ctx context.Context, options ...RequestOption)
 	} else {
 		option = obj.NewRequestOption()
 	}
-	obj.isRoute = true
+	obj.used = true
 	fulData, err := obj.Request(ctx, option)
 	if err != nil {
 		obj.Fail(ctx)
@@ -195,7 +196,7 @@ func (obj *Route) RequestContinue(ctx context.Context, options ...RequestOption)
 }
 
 func (obj *Route) Continue(ctx context.Context, options ...RequestOption) error {
-	obj.isRoute = true
+	obj.used = true
 	_, err := obj.webSock.FetchContinueRequest(ctx, obj.recvData.RequestId, options...)
 	if err != nil {
 		obj.Fail(ctx)
@@ -231,7 +232,7 @@ func (obj *Route) ResponseBody(ctx context.Context) (string, error) {
 
 // Failed, Aborted, TimedOut, AccessDenied, ConnectionClosed, ConnectionReset, ConnectionRefused, ConnectionAborted, ConnectionFailed, NameNotResolved, InternetDisconnected, AddressUnreachable, BlockedByClient, BlockedByResponse
 func (obj *Route) Fail(ctx context.Context, errorReasons ...string) error {
-	obj.isRoute = true
+	obj.used = true
 	var errorReason string
 	if len(errorReasons) > 0 {
 		errorReason = errorReasons[0]

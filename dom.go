@@ -3,7 +3,7 @@ package cdp
 import (
 	"context"
 
-	"gitee.com/baixudong/gson"
+	"github.com/gospider007/gson"
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
 )

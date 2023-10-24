@@ -7,9 +7,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"gitee.com/baixudong/db"
-	"gitee.com/baixudong/requests"
-	"gitee.com/baixudong/websocket"
+	"github.com/gospider007/db"
+	"github.com/gospider007/requests"
+	"github.com/gospider007/websocket"
 )
 
 type commend struct {

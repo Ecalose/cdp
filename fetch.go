@@ -5,8 +5,8 @@ import (
 
 	"net/http"
 
-	"gitee.com/baixudong/requests"
-	"gitee.com/baixudong/tools"
+	"github.com/gospider007/gtls"
+	"github.com/gospider007/tools"
 )
 
 func (obj *WebSock) FetchRequestEnable(preCtx context.Context) (RecvData, error) {
@@ -99,7 +99,7 @@ func (obj *WebSock) FetchGetResponseBody(preCtx context.Context, requestId strin
 func (obj *WebSock) FetchFulfillRequest(preCtx context.Context, requestId string, fulData FulData) (RecvData, error) {
 	if fulData.Headers == nil {
 		fulData.Headers = http.Header{
-			"Content-Type": []string{requests.GetContentTypeWithBytes(tools.StringToBytes(fulData.Body))},
+			"Content-Type": []string{gtls.GetContentTypeWithBytes(tools.StringToBytes(fulData.Body))},
 		}
 	}
 	headers := []struct {

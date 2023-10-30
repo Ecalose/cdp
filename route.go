@@ -137,14 +137,6 @@ func (obj *Route) GetCacheKey(routeOption RequestOption) []byte {
 	md5Str := tools.Md5(fmt.Sprintf("%s,%s,%s", routeOption.Method, keyStr, routeOption.PostData))
 	return tools.StringToBytes(tools.Hex(md5Str))
 }
-func (obj *Route) GetCacheData(key []byte) (fulData FulData, err error) {
-	err = obj.webSock.db.GetWithType(key, &fulData)
-	return
-}
-func (obj *Route) SetCacheData(key []byte, fulData FulData) (err error) {
-	err = obj.webSock.db.Set(key, fulData)
-	return
-}
 func (obj *Route) Request(ctx context.Context, routeOption RequestOption, options ...requests.RequestOption) (fulData FulData, err error) {
 	option := requests.RequestOption{
 		Proxy: obj.webSock.option.Proxy,

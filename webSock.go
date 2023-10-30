@@ -7,7 +7,6 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gospider007/db"
 	"github.com/gospider007/requests"
 	"github.com/gospider007/websocket"
 )
@@ -31,7 +30,6 @@ type RecvData struct {
 
 type WebSock struct {
 	option   WebSockOption
-	db       *db.Client
 	conn     *websocket.Conn
 	ctx      context.Context
 	cnl      context.CancelCauseFunc
@@ -104,15 +102,18 @@ type WebSockOption struct {
 	Proxy string
 }
 
-func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string, option WebSockOption, db *db.Client) (*WebSock, error) {
+func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string, option WebSockOption) (*WebSock, error) {
 	response, err := globalReqCli.Request(preCtx, "get", ws, requests.RequestOption{DisProxy: true})
 	if err != nil {
 		return nil, err
 	}
-	response.WebSocket().SetReadLimit(1024 * 1024 * 1024) //1G
+	conn := response.WebSocket()
+	if conn == nil {
+		return nil, errors.New("new websock error")
+	}
+	conn.SetReadLimit(1024 * 1024 * 1024) //1G
 	cli := &WebSock{
 		conn:   response.WebSocket(),
-		db:     db,
 		reqCli: globalReqCli,
 		option: option,
 	}

@@ -129,7 +129,7 @@ func (obj *WebSock) DelEvent(method string) {
 }
 func (obj *WebSock) Close(err error) error {
 	obj.cnl(err)
-	return obj.conn.Close("close")
+	return obj.conn.Close()
 }
 
 func (obj *WebSock) regId(preCtx context.Context, ids ...int64) *event {

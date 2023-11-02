@@ -6,9 +6,9 @@ require (
 	github.com/gospider007/gson v0.0.0-20231024092648-c97546a0287d
 	github.com/gospider007/gtls v0.0.0-20231024092712-01193b9f0404
 	github.com/gospider007/re v0.0.0-20231024115818-adfd03636256
-	github.com/gospider007/requests v0.0.0-20231029025248-ed78b8c6cd82
+	github.com/gospider007/requests v0.0.0-20231102021202-e88d0736bcb8
 	github.com/gospider007/tools v0.0.0-20231024115950-be51fa815fcd
-	github.com/gospider007/websocket v0.0.0-20231024120029-ac3d4bf72f42
+	github.com/gospider007/websocket v0.0.0-20231102021107-d34612e770bd
 	golang.org/x/net v0.17.0
 )
 
@@ -33,7 +33,7 @@ require (
 	github.com/miekg/dns v1.1.56 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
-	github.com/quic-go/quic-go v0.39.3 // indirect
+	github.com/quic-go/quic-go v0.40.0 // indirect
 	github.com/refraction-networking/utls v1.5.4 // indirect
 	github.com/tidwall/gjson v1.17.0 // indirect
 	github.com/tidwall/match v1.1.1 // indirect

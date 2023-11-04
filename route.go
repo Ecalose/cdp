@@ -156,6 +156,9 @@ func (obj *Route) Request(ctx context.Context, routeOption RequestOption, option
 	fulData.Body = rs.Text()
 	fulData.Headers = rs.Headers()
 	fulData.ResponsePhrase = rs.Status()
+	if !rs.InPool() {
+		rs.Close()
+	}
 	return
 }
 func (obj *Route) FulFill(ctx context.Context, fulDatas ...FulData) error {

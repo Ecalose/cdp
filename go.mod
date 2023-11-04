@@ -6,7 +6,7 @@ require (
 	github.com/gospider007/gson v0.0.0-20231024092648-c97546a0287d
 	github.com/gospider007/gtls v0.0.0-20231024092712-01193b9f0404
 	github.com/gospider007/re v0.0.0-20231024115818-adfd03636256
-	github.com/gospider007/requests v0.0.0-20231102021202-e88d0736bcb8
+	github.com/gospider007/requests v0.0.0-20231104022841-085f41b45ee0
 	github.com/gospider007/tools v0.0.0-20231024115950-be51fa815fcd
 	github.com/gospider007/websocket v0.0.0-20231102021107-d34612e770bd
 	golang.org/x/net v0.17.0

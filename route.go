@@ -145,7 +145,7 @@ func (obj *Route) Request(ctx context.Context, routeOption RequestOption, option
 		option = options[0]
 	}
 	if routeOption.PostData != "" {
-		option.Raw = routeOption.PostData
+		option.Body = routeOption.PostData
 	}
 	option.Headers = routeOption.Headers
 	rs, err := obj.webSock.reqCli.Request(ctx, routeOption.Method, routeOption.Url, option)

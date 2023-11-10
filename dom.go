@@ -42,16 +42,13 @@ func (obj NodeType) HtmlNodeType() html.NodeType {
 	}
 }
 func ParseJsonDom(data *gson.Client) *html.Node {
-	attrDom := data.Get("attributes")
 	attrs := []html.Attribute{}
-	if attrDom != nil {
-		attributes := attrDom.Array()
-		for i := 0; i < len(attributes)/2; i++ {
-			attrs = append(attrs, html.Attribute{
-				Key: attributes[i*2].String(),
-				Val: attributes[i*2+1].String(),
-			})
-		}
+	attributes := data.Get("attributes").Array()
+	for i := 0; i < len(attributes)/2; i++ {
+		attrs = append(attrs, html.Attribute{
+			Key: attributes[i*2].String(),
+			Val: attributes[i*2+1].String(),
+		})
 	}
 	attrs = append(attrs, html.Attribute{Key: "gospiderNodeId", Val: data.Get("nodeId").String()})
 	nodeType := NodeType(data.Get("nodeType").Int())
@@ -67,18 +64,14 @@ func ParseJsonDom(data *gson.Client) *html.Node {
 			curNode.Data = data.Get("localName").String()
 		}
 	}
-	if childrenDom := data.Get("children"); childrenDom != nil {
-		for _, children := range childrenDom.Array() {
-			if node := ParseJsonDom(children); node != nil {
-				curNode.AppendChild(node)
-			}
+	for _, children := range data.Get("children").Array() {
+		if node := ParseJsonDom(children); node != nil {
+			curNode.AppendChild(node)
 		}
 	}
-	if childrenDom := data.Get("contentDocument.children"); childrenDom != nil {
-		for _, children := range childrenDom.Array() {
-			if node := ParseJsonDom(children); node != nil {
-				curNode.AppendChild(node)
-			}
+	for _, children := range data.Get("contentDocument.children").Array() {
+		if node := ParseJsonDom(children); node != nil {
+			curNode.AppendChild(node)
 		}
 	}
 	return curNode

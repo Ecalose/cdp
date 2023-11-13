@@ -157,7 +157,7 @@ func (obj *Route) Request(ctx context.Context, routeOption RequestOption, option
 	fulData.Headers = rs.Headers()
 	fulData.ResponsePhrase = rs.Status()
 	if !rs.InPool() {
-		rs.Close()
+		rs.CloseBody()
 	}
 	return
 }

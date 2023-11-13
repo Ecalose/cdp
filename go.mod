@@ -5,7 +5,7 @@ go 1.21.3
 require (
 	github.com/gospider007/gson v0.0.0-20231110081735-fa6816715498
 	github.com/gospider007/re v0.0.0-20231024115818-adfd03636256
-	github.com/gospider007/requests v0.0.0-20231110082210-c9e1784e06dc
+	github.com/gospider007/requests v0.0.0-20231113141305-5d8548f04e98
 	github.com/gospider007/tools v0.0.0-20231110011734-c2a4739ea0a0
 	github.com/gospider007/websocket v0.0.0-20231104023155-0d1a787293d3
 	golang.org/x/net v0.18.0
@@ -43,7 +43,7 @@ require (
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect
 	golang.org/x/crypto v0.15.0 // indirect
-	golang.org/x/exp v0.0.0-20231108232855-2478ac86f678 // indirect
+	golang.org/x/exp v0.0.0-20231110203233-9a3e6036ecaa // indirect
 	golang.org/x/image v0.14.0 // indirect
 	golang.org/x/mod v0.14.0 // indirect
 	golang.org/x/sys v0.14.0 // indirect

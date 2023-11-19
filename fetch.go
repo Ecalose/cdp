@@ -11,23 +11,10 @@ import (
 func (obj *WebSock) FetchRequestEnable(preCtx context.Context) (RecvData, error) {
 	return obj.send(preCtx, commend{
 		Method: "Fetch.enable",
-
 		Params: map[string]any{
 			"patterns": []map[string]any{
 				{
 					"requestStage": "Request",
-				},
-			},
-		},
-	})
-}
-func (obj *WebSock) FetchResponseEnable(preCtx context.Context) (RecvData, error) {
-	return obj.send(preCtx, commend{
-		Method: "Fetch.enable",
-		Params: map[string]any{
-			"patterns": []map[string]any{
-				{
-					"requestStage": "Response",
 				},
 			},
 		},

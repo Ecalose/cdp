@@ -12,9 +12,10 @@ import (
 )
 
 type commend struct {
-	Id     int64          `json:"id"`
-	Method string         `json:"method"`
-	Params map[string]any `json:"params"`
+	Id        int64          `json:"id"`
+	Method    string         `json:"method"`
+	Params    map[string]any `json:"params,omitempty"`
+	SessionId string         `json:"sessionId,omitempty"`
 }
 type event struct {
 	Ctx      context.Context

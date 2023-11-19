@@ -51,6 +51,9 @@ func ParseJsonDom(data *gson.Client) *html.Node {
 		})
 	}
 	attrs = append(attrs, html.Attribute{Key: "gospiderNodeId", Val: data.Get("nodeId").String()})
+	if frameId := data.Get("frameId").String(); frameId != "" {
+		attrs = append(attrs, html.Attribute{Key: "gospiderFrameId", Val: frameId})
+	}
 	nodeType := NodeType(data.Get("nodeType").Int())
 	curNode := &html.Node{Type: nodeType.HtmlNodeType(), Attr: attrs}
 	curNode.DataAtom = atom.Lookup(data.Get("localName").Bytes())

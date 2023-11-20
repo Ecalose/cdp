@@ -1,12 +1,15 @@
 package cdp
 
-import "context"
+import (
+	"context"
+)
 
-func (obj *WebSock) TargetCreateTarget(ctx context.Context, url string) (RecvData, error) {
+func (obj *WebSock) TargetCreateTarget(ctx context.Context, browserContextId string, url string) (RecvData, error) {
 	return obj.send(ctx, commend{
 		Method: "Target.createTarget",
 		Params: map[string]any{
-			"url": url,
+			"browserContextId": browserContextId,
+			"url":              url,
 		},
 	})
 }
@@ -25,9 +28,15 @@ func (obj *WebSock) TargetSetAutoAttach(ctx context.Context) (RecvData, error) {
 			"autoAttach":             true,
 			"flatten":                true,
 			"waitForDebuggerOnStart": true,
-			"filter": []any{
-				map[string]any{"type": "iframe", "exclude": false},
-			},
+		},
+	})
+}
+
+func (obj *WebSock) TargetCreateBrowserContext(ctx context.Context) (RecvData, error) {
+	return obj.send(obj.ctx, commend{
+		Method: "Target.createBrowserContext",
+		Params: map[string]any{
+			"disposeOnDetach": true,
 		},
 	})
 }

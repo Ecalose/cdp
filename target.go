@@ -9,6 +9,7 @@ func (obj *WebSock) TargetCreateTarget(ctx context.Context, browserContextId str
 		Method: "Target.createTarget",
 		Params: map[string]any{
 			"browserContextId": browserContextId,
+			"background":       true,
 			"url":              url,
 		},
 	})
@@ -22,7 +23,7 @@ func (obj *WebSock) TargetCloseTarget(targetId string) (RecvData, error) {
 	})
 }
 func (obj *WebSock) TargetSetAutoAttach(ctx context.Context) (RecvData, error) {
-	return obj.send(obj.ctx, commend{
+	return obj.send(ctx, commend{
 		Method: "Target.setAutoAttach",
 		Params: map[string]any{
 			"autoAttach":             true,
@@ -33,10 +34,18 @@ func (obj *WebSock) TargetSetAutoAttach(ctx context.Context) (RecvData, error) {
 }
 
 func (obj *WebSock) TargetCreateBrowserContext(ctx context.Context) (RecvData, error) {
-	return obj.send(obj.ctx, commend{
+	return obj.send(ctx, commend{
 		Method: "Target.createBrowserContext",
 		Params: map[string]any{
 			"disposeOnDetach": true,
+		},
+	})
+}
+func (obj *WebSock) TargetDisposeBrowserContext(browserContextId string) (RecvData, error) {
+	return obj.send(obj.ctx, commend{
+		Method: "Target.disposeBrowserContext",
+		Params: map[string]any{
+			"browserContextId": browserContextId,
 		},
 	})
 }

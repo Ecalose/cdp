@@ -77,9 +77,7 @@ func (obj *WebSock) PageNavigate(ctx context.Context, url string) (RecvData, err
 	return obj.send(ctx, commend{
 		Method: "Page.navigate",
 		Params: map[string]any{
-			"url":    url,
-			"width":  1080,
-			"height": 720,
+			"url": url,
 		},
 	})
 }

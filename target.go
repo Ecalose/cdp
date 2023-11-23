@@ -9,8 +9,8 @@ func (obj *WebSock) TargetCreateTarget(ctx context.Context, browserContextId str
 		Method: "Target.createTarget",
 		Params: map[string]any{
 			"browserContextId": browserContextId,
-			"background":       true,
 			"url":              url,
+			"transitionType":   "address_bar",
 		},
 	})
 }

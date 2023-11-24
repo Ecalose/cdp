@@ -7,6 +7,7 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/gospider007/gson"
 	"github.com/gospider007/requests"
 	"github.com/gospider007/websocket"
 )
@@ -91,14 +92,17 @@ func (obj *WebSock) recvMain() (err error) {
 		case <-obj.ctx.Done():
 			return obj.ctx.Err()
 		default:
-			rd := RecvData{}
-			if err = obj.conn.RecvJson(obj.ctx, &rd); err != nil {
+			_, con, err := obj.conn.Recv(obj.ctx)
+			if err != nil {
 				return err
 			}
-			if rd.Id == 0 {
-				rd.Id = obj.id.Add(1)
+			rd := RecvData{}
+			if _, err = gson.Decode(con, &rd); err == nil {
+				if rd.Id == 0 {
+					rd.Id = obj.id.Add(1)
+				}
+				go obj.recv(obj.ctx, rd)
 			}
-			go obj.recv(obj.ctx, rd)
 		}
 	}
 }
@@ -167,7 +171,7 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 		cmd.Id = obj.id.Add(1)
 		idEvent := obj.regId(ctx, cmd.Id)
 		defer idEvent.Cnl()
-		if err := obj.conn.SendJson(ctx, cmd); err != nil {
+		if err := obj.conn.Send(ctx, websocket.MessageText, cmd); err != nil {
 			return RecvData{}, err
 		}
 		select {

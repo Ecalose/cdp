@@ -7,7 +7,7 @@ require (
 	github.com/gospider007/re v0.0.0-20231024115818-adfd03636256
 	github.com/gospider007/requests v0.0.0-20231124122653-3f79c0117d12
 	github.com/gospider007/tools v0.0.0-20231122021245-1cafbac3ef46
-	github.com/gospider007/websocket v0.0.0-20231124122326-78d52f163d6c
+	github.com/gospider007/websocket v0.0.0-20231124124758-1491f1b57db1
 	golang.org/x/net v0.18.0
 )
 

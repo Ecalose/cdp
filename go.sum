@@ -81,6 +81,8 @@ github.com/gospider007/requests v0.0.0-20231122021400-868bc9ca39b3 h1:6bZBH2o7BS
 github.com/gospider007/requests v0.0.0-20231122021400-868bc9ca39b3/go.mod h1:kk/YfG9aW/6t7a09b2aZ+J/yNmBhTBvboXHZuzpAA1A=
 github.com/gospider007/requests v0.0.0-20231123090403-f6d27b3f1012 h1:VMQ7N/ZXD9kIkMyfqH9WK2xlJ5Er9O1svevDBSRWwuM=
 github.com/gospider007/requests v0.0.0-20231123090403-f6d27b3f1012/go.mod h1:nif6e3vZlZebJfymMzS/1DAuw/bhwzLQG2eWk/YzfRY=
+github.com/gospider007/requests v0.0.0-20231124122653-3f79c0117d12 h1:fF1VRyvoRZephkmWvf61IiAca/uUutUBmsR3djQ8b1k=
+github.com/gospider007/requests v0.0.0-20231124122653-3f79c0117d12/go.mod h1:8MD7P6CCkhhi+YmK8zZwF0/wYMXola5va7DbbrkJSfc=
 github.com/gospider007/tools v0.0.0-20231104124710-69ac32876ccc h1:29s54Z07h4MVTbZTLKRqypFRXbD4oQK5PhGUttaa2qY=
 github.com/gospider007/tools v0.0.0-20231104124710-69ac32876ccc/go.mod h1:aVRsLb/dp5mDycIzyS/cKQMl8uPc0mCEXg5PzbfzHZk=
 github.com/gospider007/tools v0.0.0-20231110011734-c2a4739ea0a0 h1:/MfNCUJW9rfx0LsOy/rAWwp1dDZujOocuIks5KNysOk=
@@ -93,6 +95,8 @@ github.com/gospider007/websocket v0.0.0-20231104023155-0d1a787293d3 h1:cjfmIiX1+
 github.com/gospider007/websocket v0.0.0-20231104023155-0d1a787293d3/go.mod h1:OSPnflgh+c8tIqpkUCpX21uBiJIGikhURuEctoRZM/E=
 github.com/gospider007/websocket v0.0.0-20231114095858-b8bc9b2033d3 h1:HpiNfOZ9Tjo4hhP1+jmlgqykngykles3ypXa2BUuxRc=
 github.com/gospider007/websocket v0.0.0-20231114095858-b8bc9b2033d3/go.mod h1:jINjCM6qIRiqn2Di1bat4Ie5gY66ae7LYT8YK4fAejY=
+github.com/gospider007/websocket v0.0.0-20231124122326-78d52f163d6c h1:AVquutD7Mbb9gcq7/ciRC/Vt2StSiBuUagJviG8+vkg=
+github.com/gospider007/websocket v0.0.0-20231124122326-78d52f163d6c/go.mod h1:TquIvV/QrLmSufnwdc+54DAbUd39HsNgpFcoQYthVU8=
 github.com/json-iterator/go v1.1.12 h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnrnM=
 github.com/json-iterator/go v1.1.12/go.mod h1:e30LSqwooZae/UwlEbR2852Gd8hjQvJoHmT4TnhNGBo=
 github.com/klauspost/compress v1.13.6/go.mod h1:/3/Vjq9QcHkK5uEr5lBEmyoZ1iFhe47etQ6QUkpK6sk=

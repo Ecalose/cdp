@@ -30,10 +30,11 @@ type RecvData struct {
 }
 
 type WebSock struct {
+	err      error
 	option   WebSockOption
 	conn     *websocket.Conn
 	ctx      context.Context
-	cnl      context.CancelCauseFunc
+	cnl      context.CancelFunc
 	id       atomic.Int64
 	reqCli   *requests.Client
 	ids      sync.Map
@@ -81,14 +82,17 @@ func (obj *WebSock) recv(ctx context.Context, rd RecvData) error {
 	return nil
 }
 func (obj *WebSock) recvMain() (err error) {
-	defer obj.Close()
+	defer func() {
+		obj.err = err
+		obj.Close()
+	}()
 	for {
 		select {
 		case <-obj.ctx.Done():
 			return obj.ctx.Err()
 		default:
 			rd := RecvData{}
-			if err := obj.conn.RecvJson(obj.ctx, &rd); err != nil {
+			if err = obj.conn.RecvJson(obj.ctx, &rd); err != nil {
 				return err
 			}
 			if rd.Id == 0 {
@@ -118,7 +122,7 @@ func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string
 		reqCli: globalReqCli,
 		option: option,
 	}
-	cli.ctx, cli.cnl = context.WithCancelCause(preCtx)
+	cli.ctx, cli.cnl = context.WithCancel(preCtx)
 	go cli.recvMain()
 	return cli, err
 }
@@ -130,7 +134,10 @@ func (obj *WebSock) DelEvent(method string) {
 }
 func (obj *WebSock) Close() {
 	obj.conn.Close()
-	obj.cnl(nil)
+	obj.cnl()
+}
+func (obj *WebSock) Error() error {
+	return obj.err
 }
 
 func (obj *WebSock) regId(preCtx context.Context, ids ...int64) *event {
@@ -153,7 +160,7 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 	defer cnl()
 	select {
 	case <-obj.Done():
-		return RecvData{}, context.Cause(obj.ctx)
+		return RecvData{}, obj.ctx.Err()
 	case <-ctx.Done():
 		return RecvData{}, obj.ctx.Err()
 	default:
@@ -165,7 +172,7 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 		}
 		select {
 		case <-obj.Done():
-			return RecvData{}, context.Cause(obj.ctx)
+			return RecvData{}, obj.ctx.Err()
 		case <-ctx.Done():
 			return RecvData{}, ctx.Err()
 		case idRecvData := <-idEvent.RecvData:

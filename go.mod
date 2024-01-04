@@ -17,7 +17,6 @@ require (
 	github.com/andybalholm/cascadia v1.3.2 // indirect
 	github.com/caddyserver/certmagic v0.20.0 // indirect
 	github.com/cloudflare/circl v1.3.7 // indirect
-	github.com/google/pprof v0.0.0-20231212022811-ec68065c825e // indirect
 	github.com/gospider007/bar v0.0.0-20231215084215-956cfa59ce61 // indirect
 	github.com/gospider007/blog v0.0.0-20231121084103-59a004dafccf // indirect
 	github.com/gospider007/bs4 v0.0.0-20240101025928-00848c76b4c5 // indirect

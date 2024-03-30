@@ -92,7 +92,7 @@ func (obj *WebSock) recvMain() (err error) {
 		case <-obj.ctx.Done():
 			return obj.ctx.Err()
 		default:
-			_, con, err := obj.conn.Recv(obj.ctx)
+			_, con, err := obj.conn.ReadMessage()
 			if err != nil {
 				return err
 			}
@@ -120,7 +120,7 @@ func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string
 	if conn == nil {
 		return nil, errors.New("new websock error")
 	}
-	conn.SetReadLimit(1024 * 1024 * 1024) //1G
+	// conn.SetReadLimit(1024 * 1024 * 1024) //1G
 	cli := &WebSock{
 		conn:   response.WebSocket(),
 		reqCli: globalReqCli,
@@ -171,7 +171,7 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 		cmd.Id = obj.id.Add(1)
 		idEvent := obj.regId(ctx, cmd.Id)
 		defer idEvent.Cnl()
-		if err := obj.conn.Send(ctx, websocket.MessageText, cmd); err != nil {
+		if err := obj.conn.WriteMessage(websocket.TextMessage, cmd); err != nil {
 			return RecvData{}, err
 		}
 		select {

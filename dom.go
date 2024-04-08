@@ -125,15 +125,12 @@ func (obj *WebSock) DOMRequestNode(ctx context.Context, objectId string) (RecvDa
 }
 
 func (obj *WebSock) DOMSetOuterHTML(ctx context.Context, nodeId int64, outerHTML string) (RecvData, error) {
-	params := map[string]any{
-		"outerHTML": outerHTML,
-	}
-	if nodeId != 0 {
-		params["nodeId"] = nodeId
-	}
 	return obj.send(ctx, commend{
 		Method: "DOM.setOuterHTML",
-		Params: params,
+		Params: map[string]any{
+			"nodeId":    nodeId,
+			"outerHTML": outerHTML,
+		},
 	})
 }
 func (obj *WebSock) DOMGetOuterHTML(ctx context.Context, nodeId int64, backendNodeId int64) (RecvData, error) {

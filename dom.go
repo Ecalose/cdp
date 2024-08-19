@@ -2,83 +2,8 @@ package cdp
 
 import (
 	"context"
-
-	"github.com/gospider007/gson"
-	"golang.org/x/net/html"
-	"golang.org/x/net/html/atom"
 )
 
-type NodeType int64
-
-var (
-	NodeTypeElement               NodeType = 1
-	NodeTypeAttribute             NodeType = 2
-	NodeTypeText                  NodeType = 3
-	NodeTypeCDATA                 NodeType = 4
-	NodeTypeEntityReference       NodeType = 5
-	NodeTypeEntity                NodeType = 6
-	NodeTypeProcessingInstruction NodeType = 7
-	NodeTypeComment               NodeType = 8
-	NodeTypeDocument              NodeType = 9
-	NodeTypeDocumentType          NodeType = 10
-	NodeTypeDocumentFragment      NodeType = 11
-	NodeTypeNotation              NodeType = 12
-)
-
-func (obj NodeType) HtmlNodeType() html.NodeType {
-	switch obj {
-	case NodeTypeElement:
-		return html.ElementNode
-	case NodeTypeText:
-		return html.TextNode
-	case NodeTypeComment:
-		return html.CommentNode
-	case NodeTypeDocument:
-		return html.DocumentNode
-	case NodeTypeDocumentType:
-		return html.DoctypeNode
-	default:
-		return html.RawNode
-	}
-}
-func ParseJsonDom(data *gson.Client) *html.Node {
-	attrs := []html.Attribute{}
-	attributes := data.Get("attributes").Array()
-	for i := 0; i < len(attributes)/2; i++ {
-		attrs = append(attrs, html.Attribute{
-			Key: attributes[i*2].String(),
-			Val: attributes[i*2+1].String(),
-		})
-	}
-	attrs = append(attrs, html.Attribute{Key: "gospiderNodeId", Val: data.Get("nodeId").String()})
-	if frameId := data.Get("frameId").String(); frameId != "" {
-		attrs = append(attrs, html.Attribute{Key: "gospiderFrameId", Val: frameId})
-	}
-	nodeType := NodeType(data.Get("nodeType").Int())
-	curNode := &html.Node{Type: nodeType.HtmlNodeType(), Attr: attrs}
-	curNode.DataAtom = atom.Lookup(data.Get("localName").Bytes())
-	switch nodeType {
-	case NodeTypeText:
-		curNode.Data = data.Get("nodeValue").String()
-	case NodeTypeElement:
-		curNode.Data = data.Get("localName").String()
-	default:
-		if curNode.Data = data.Get("nodeValue").String(); curNode.Data == "" {
-			curNode.Data = data.Get("localName").String()
-		}
-	}
-	for _, children := range data.Get("children").Array() {
-		if node := ParseJsonDom(children); node != nil {
-			curNode.AppendChild(node)
-		}
-	}
-	for _, children := range data.Get("contentDocument.children").Array() {
-		if node := ParseJsonDom(children); node != nil {
-			curNode.AppendChild(node)
-		}
-	}
-	return curNode
-}
 func (obj *WebSock) DOMEnable(ctx context.Context) (RecvData, error) {
 	return obj.send(ctx, commend{
 		Method: "DOM.enable",
@@ -137,7 +62,7 @@ func (obj *WebSock) DOMGetOuterHTML(ctx context.Context, nodeId int64, backendNo
 	params := map[string]any{}
 	if backendNodeId != 0 {
 		params["backendNodeId"] = backendNodeId
-	} else {
+	} else if nodeId != 0 {
 		params["nodeId"] = nodeId
 	}
 	return obj.send(ctx, commend{

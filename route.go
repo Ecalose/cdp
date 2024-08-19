@@ -252,5 +252,13 @@ type FulData struct {
 }
 
 func (obj FulData) Cookies() (requests.Cookies, error) {
-	return requests.ReadSetCookies(obj.Headers)
+	cookies := []*http.Cookie{}
+	for _, cook := range obj.Headers.Values("Set-Cookie") {
+		result, err := http.ParseSetCookie(cook)
+		if err != nil {
+			return nil, err
+		}
+		cookies = append(cookies, result)
+	}
+	return cookies, nil
 }

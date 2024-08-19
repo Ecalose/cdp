@@ -1,4 +1,4 @@
-module github.com/gospider007/cdp
+module q
 
 go 1.23.0
 

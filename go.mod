@@ -1,4 +1,4 @@
-module cdp
+module github.com/gospider007/cdp
 
 go 1.23.0
 

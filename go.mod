@@ -1,4 +1,4 @@
-module q
+module cdp
 
 go 1.23.0
 

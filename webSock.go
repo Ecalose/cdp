@@ -69,7 +69,7 @@ func (obj *WebSock) recv(ctx context.Context, rd RecvData) error {
 		case <-obj.Done():
 			return errors.New("websocks closed")
 		case <-ctx.Done():
-			return ctx.Err()
+			return context.Cause(ctx)
 		case <-cmdData.Ctx.Done():
 		case cmdData.RecvData <- rd:
 		}
@@ -90,7 +90,7 @@ func (obj *WebSock) recvMain() (err error) {
 	for {
 		select {
 		case <-obj.ctx.Done():
-			return obj.ctx.Err()
+			return context.Cause(obj.ctx)
 		default:
 			_, con, err := obj.conn.ReadMessage()
 			if err != nil {
@@ -164,9 +164,9 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 	defer cnl()
 	select {
 	case <-obj.Done():
-		return RecvData{}, obj.ctx.Err()
+		return RecvData{}, context.Cause(obj.ctx)
 	case <-ctx.Done():
-		return RecvData{}, obj.ctx.Err()
+		return RecvData{}, context.Cause(obj.ctx)
 	default:
 		cmd.Id = obj.id.Add(1)
 		idEvent := obj.regId(ctx, cmd.Id)
@@ -176,9 +176,9 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 		}
 		select {
 		case <-obj.Done():
-			return RecvData{}, obj.ctx.Err()
+			return RecvData{}, context.Cause(obj.ctx)
 		case <-ctx.Done():
-			return RecvData{}, ctx.Err()
+			return RecvData{}, context.Cause(ctx)
 		case idRecvData := <-idEvent.RecvData:
 			return idRecvData, nil
 		}

@@ -125,7 +125,7 @@ func (obj *Route) Cookies() (requests.Cookies, error) {
 	return requests.ReadCookies(obj.Headers())
 }
 
-func (obj *Route) GetCacheKey(routeOption RequestOption) []byte {
+func (obj *Route) GetCacheKey(routeOption RequestOption) string {
 	keyStr := routeOption.Url
 	nt := strconv.Itoa(int(time.Now().Unix() / 1000))
 	keyStr = re.Sub(fmt.Sprintf(`=%s\d*?&`, nt), "=&", keyStr)
@@ -135,7 +135,7 @@ func (obj *Route) GetCacheKey(routeOption RequestOption) []byte {
 	keyStr = re.Sub(`=0\.\d{10,}&`, "=&", keyStr)
 	keyStr = re.Sub(`=0\.\d{10,}$`, "=", keyStr)
 	md5Str := tools.Md5(fmt.Sprintf("%s,%s,%s", routeOption.Method, keyStr, routeOption.PostData))
-	return tools.StringToBytes(tools.Hex(md5Str))
+	return tools.Hex(md5Str)
 }
 func (obj *Route) Request(ctx context.Context, routeOption RequestOption, options ...requests.RequestOption) (fulData FulData, err error) {
 	option := requests.RequestOption{

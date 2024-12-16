@@ -156,8 +156,11 @@ func (obj *Route) Request(ctx context.Context, routeOption RequestOption, option
 	fulData.Body = rs.Text()
 	fulData.Headers = rs.Headers()
 	fulData.ResponsePhrase = rs.Status()
-	if !rs.InPool() {
-		rs.CloseBody()
+	if rs.WebSocket() != nil {
+		rs.WebSocket().Close()
+	}
+	if rs.SSE() != nil {
+		rs.SSE().Close()
 	}
 	return
 }

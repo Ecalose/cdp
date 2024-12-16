@@ -3,6 +3,7 @@ package cdp
 import (
 	"context"
 	"errors"
+	"fmt"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -28,9 +29,11 @@ type RecvData struct {
 	Method string         `json:"method"`
 	Params map[string]any `json:"params"`
 	Result map[string]any `json:"result"`
+	Error  map[string]any `json:"error"`
 }
 
 type WebSock struct {
+	ws       string
 	err      error
 	option   WebSockOption
 	conn     *websocket.Conn
@@ -60,7 +63,6 @@ func (obj *WebSock) Done() <-chan struct{} {
 }
 
 func (obj *WebSock) recv(ctx context.Context, rd RecvData) error {
-	// log.Print(gson.Decode(rd))
 	defer recover()
 	cmdDataAny, ok := obj.ids.LoadAndDelete(rd.Id)
 	if ok {
@@ -122,6 +124,7 @@ func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string
 	}
 	// conn.SetReadLimit(1024 * 1024 * 1024) //1G
 	cli := &WebSock{
+		ws:     ws,
 		conn:   response.WebSocket(),
 		reqCli: globalReqCli,
 		option: option,
@@ -164,8 +167,14 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 	defer cnl()
 	select {
 	case <-obj.Done():
+		if obj.Error() != nil {
+			return RecvData{}, obj.Error()
+		}
 		return RecvData{}, context.Cause(obj.ctx)
 	case <-ctx.Done():
+		if obj.Error() != nil {
+			return RecvData{}, obj.Error()
+		}
 		return RecvData{}, context.Cause(obj.ctx)
 	default:
 		cmd.Id = obj.id.Add(1)
@@ -176,10 +185,19 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 		}
 		select {
 		case <-obj.Done():
+			if obj.Error() != nil {
+				return RecvData{}, obj.Error()
+			}
 			return RecvData{}, context.Cause(obj.ctx)
 		case <-ctx.Done():
+			if obj.Error() != nil {
+				return RecvData{}, obj.Error()
+			}
 			return RecvData{}, context.Cause(ctx)
 		case idRecvData := <-idEvent.RecvData:
+			if idRecvData.Error != nil {
+				return idRecvData, fmt.Errorf("websock error: %v", idRecvData.Error)
+			}
 			return idRecvData, nil
 		}
 	}

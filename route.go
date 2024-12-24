@@ -164,6 +164,9 @@ func (obj *Route) Request(ctx context.Context, routeOption RequestOption, option
 	}
 	return
 }
+func (obj *Route) RawRequest() *requests.Client {
+	return obj.webSock.reqCli
+}
 func (obj *Route) FulFill(ctx context.Context, fulDatas ...FulData) error {
 	obj.used = true
 	var fulData FulData

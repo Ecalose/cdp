@@ -139,7 +139,9 @@ func (obj *Route) GetCacheKey(routeOption RequestOption) string {
 }
 func (obj *Route) Request(ctx context.Context, routeOption RequestOption, options ...requests.RequestOption) (fulData FulData, err error) {
 	option := requests.RequestOption{
-		Proxy: obj.webSock.option.Proxy,
+		ClientOption: requests.ClientOption{
+			Proxy: obj.webSock.option.Proxy,
+		},
 	}
 	if len(options) > 0 {
 		option = options[0]

@@ -20,3 +20,36 @@ func (obj *WebSock) Cdp(ctx context.Context, sessid string, method string, param
 	}
 	return obj.send(ctx, comd)
 }
+
+// Browser.PermissionType
+// Allowed Values: ar, audioCapture, automaticFullscreen, backgroundFetch, backgroundSync, cameraPanTiltZoom, capturedSurfaceControl, clipboardReadWrite, clipboardSanitizedWrite, displayCapture, durableStorage, geolocation, handTracking, idleDetection, keyboardLock, localFonts, midi, midiSysex, nfc, notifications, paymentHandler, periodicBackgroundSync, pointerLock, protectedMediaIdentifier, sensors, smartCard, speakerSelection, storageAccess, topLevelStorageAccess, videoCapture, vr, wakeLockScreen, wakeLockSystem, webAppInstallation, webPrinting, windowManagement
+
+func (obj *WebSock) BrowserSetPermission(ctx context.Context, permission string, setting string, origins ...string) error {
+	params := map[string]any{
+		"permission": permission,
+		"setting":    setting,
+	}
+	if len(origins) > 0 {
+		params["origin"] = origins[0]
+	}
+	_, err := obj.send(ctx, commend{
+		Method: "Browser.setPermission",
+		Params: params,
+	})
+	return err
+}
+
+func (obj *WebSock) BrowserGrantPermissions(ctx context.Context, permissions []string, origins ...string) error {
+	params := map[string]any{
+		"permissions": permissions,
+	}
+	if len(origins) > 0 {
+		params["origin"] = origins[0]
+	}
+
+	_, err := obj.send(ctx, commend{
+		Method: "Browser.grantPermissions",
+		Params: params,
+	})
+	return err
+}

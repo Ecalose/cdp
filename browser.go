@@ -24,10 +24,12 @@ func (obj *WebSock) Cdp(ctx context.Context, sessid string, method string, param
 // Browser.PermissionType
 // Allowed Values: ar, audioCapture, automaticFullscreen, backgroundFetch, backgroundSync, cameraPanTiltZoom, capturedSurfaceControl, clipboardReadWrite, clipboardSanitizedWrite, displayCapture, durableStorage, geolocation, handTracking, idleDetection, keyboardLock, localFonts, midi, midiSysex, nfc, notifications, paymentHandler, periodicBackgroundSync, pointerLock, protectedMediaIdentifier, sensors, smartCard, speakerSelection, storageAccess, topLevelStorageAccess, videoCapture, vr, wakeLockScreen, wakeLockSystem, webAppInstallation, webPrinting, windowManagement
 
-func (obj *WebSock) BrowserSetPermission(ctx context.Context, permission string, setting string, origins ...string) error {
+func (obj *WebSock) BrowserSetPermission(ctx context.Context, name string, setting string, origins ...string) error {
 	params := map[string]any{
-		"permission": permission,
-		"setting":    setting,
+		"permission": map[string]string{
+			"name": name,
+		},
+		"setting": setting,
 	}
 	if len(origins) > 0 {
 		params["origin"] = origins[0]
@@ -39,7 +41,13 @@ func (obj *WebSock) BrowserSetPermission(ctx context.Context, permission string,
 	return err
 }
 
-func (obj *WebSock) BrowserGrantPermissions(ctx context.Context, permissions []string, origins ...string) error {
+func (obj *WebSock) BrowserGrantPermissions(ctx context.Context, names []string, origins ...string) error {
+	permissions := make([]map[string]string, len(names))
+	for i, name := range names {
+		permissions[i] = map[string]string{
+			"name": name,
+		}
+	}
 	params := map[string]any{
 		"permissions": permissions,
 	}

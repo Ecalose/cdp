@@ -87,7 +87,7 @@ func (obj *WebSock) recv(ctx context.Context, rd RecvData) error {
 func (obj *WebSock) recvMain() (err error) {
 	defer func() {
 		obj.err = err
-		obj.Close()
+		obj.CloseWithError(err)
 	}()
 	for {
 		select {
@@ -139,7 +139,7 @@ func (obj *WebSock) AddEvent(method string, fun func(ctx context.Context, rd Rec
 func (obj *WebSock) DelEvent(method string) {
 	obj.onEvents.Delete(method)
 }
-func (obj *WebSock) Close() {
+func (obj *WebSock) CloseWithError(err error) {
 	obj.conn.Close()
 	obj.cnl()
 }

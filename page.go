@@ -94,3 +94,17 @@ func (obj *WebSock) PageHandleJavaScriptDialog(ctx context.Context, accept bool,
 		Params: params,
 	})
 }
+func (obj *WebSock) PageBringToFront(ctx context.Context) (RecvData, error) {
+	return obj.send(ctx, commend{
+		Method: "Page.bringToFront",
+	})
+}
+func (obj *WebSock) PageSetDocumentContent(ctx context.Context, frameId string, html string) (RecvData, error) {
+	return obj.send(ctx, commend{
+		Method: "Page.setDocumentContent",
+		Params: map[string]any{
+			"frameId": frameId,
+			"html":    html,
+		},
+	})
+}

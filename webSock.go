@@ -94,16 +94,25 @@ func (obj *WebSock) recvMain() (err error) {
 		case <-obj.ctx.Done():
 			return context.Cause(obj.ctx)
 		default:
-			_, con, err := obj.conn.ReadMessage()
+			msgType, con, err := obj.conn.ReadMessage()
 			if err != nil {
 				return err
 			}
-			rd := RecvData{}
-			if _, err = gson.Decode(con, &rd); err == nil {
-				if rd.Id == 0 {
-					rd.Id = obj.id.Add(1)
+			switch msgType {
+			case websocket.TextMessage:
+				rd := RecvData{}
+				if _, err = gson.Decode(con, &rd); err == nil {
+					if rd.Id == 0 {
+						rd.Id = obj.id.Add(1)
+					}
+					go obj.recv(obj.ctx, rd)
 				}
-				go obj.recv(obj.ctx, rd)
+			case websocket.PingMessage:
+				obj.conn.WriteMessage(websocket.PongMessage, con)
+			case websocket.CloseMessage:
+				return errors.New("websock closed")
+			default:
+				return errors.New("websock unknown message type")
 			}
 		}
 	}

@@ -38,7 +38,7 @@ type WebSock struct {
 	option   WebSockOption
 	conn     *websocket.Conn
 	ctx      context.Context
-	cnl      context.CancelFunc
+	cnl      context.CancelCauseFunc
 	id       atomic.Int64
 	reqCli   *requests.Client
 	ids      sync.Map
@@ -60,6 +60,10 @@ type RouteData struct {
 
 func (obj *WebSock) Done() <-chan struct{} {
 	return obj.ctx.Done()
+}
+
+func (obj *WebSock) Context() context.Context {
+	return obj.ctx
 }
 
 func (obj *WebSock) recv(ctx context.Context, rd RecvData) error {
@@ -131,14 +135,13 @@ func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string
 	if conn == nil {
 		return nil, errors.New("new websock error")
 	}
-	// conn.SetReadLimit(1024 * 1024 * 1024) //1G
 	cli := &WebSock{
 		ws:     ws,
 		conn:   response.WebSocket(),
 		reqCli: globalReqCli,
 		option: option,
 	}
-	cli.ctx, cli.cnl = context.WithCancel(preCtx)
+	cli.ctx, cli.cnl = context.WithCancelCause(preCtx)
 	go cli.recvMain()
 	return cli, err
 }
@@ -149,8 +152,8 @@ func (obj *WebSock) DelEvent(method string) {
 	obj.onEvents.Delete(method)
 }
 func (obj *WebSock) CloseWithError(err error) {
+	obj.cnl(err)
 	obj.conn.Close()
-	obj.cnl()
 }
 func (obj *WebSock) Error() error {
 	return obj.err

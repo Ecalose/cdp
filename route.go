@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
+	"strings"
 	"time"
 
 	"net/http"
@@ -118,6 +119,9 @@ func (obj *Route) Headers() http.Header {
 	head := http.Header{}
 	for kk, vv := range obj.recvData.Request.Headers {
 		head.Add(kk, vv)
+	}
+	if useragent := head.Get("user-agent"); strings.Contains(useragent, "HeadlessChrome") {
+		head.Set("user-agent", re.Sub("HeadlessChrome", "Chrome", useragent))
 	}
 	return head
 }

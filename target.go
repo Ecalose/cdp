@@ -49,3 +49,11 @@ func (obj *WebSock) TargetDisposeBrowserContext(browserContextId string) (RecvDa
 		},
 	})
 }
+func (obj *WebSock) TargetAttachToTarget(targetId string) (RecvData, error) {
+	return obj.send(obj.ctx, commend{
+		Method: "Target.attachToTarget",
+		Params: map[string]any{
+			"targetId": targetId,
+		},
+	})
+}

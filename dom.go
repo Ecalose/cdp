@@ -116,8 +116,9 @@ func (obj *WebSock) DOMGetDocuments(ctx context.Context) (RecvData, error) {
 	return obj.send(ctx, commend{
 		Method: "DOM.getDocument",
 		Params: map[string]any{
-			"depth":  -1,
-			"pierce": true,
+			"depth":             -1,
+			"pierce":            true,
+			"includeShadowTree": "all",
 		},
 	})
 }

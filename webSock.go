@@ -35,7 +35,7 @@ type RecvData struct {
 type WebSock struct {
 	ws       string
 	err      error
-	option   WebSockOption
+	option   requests.RequestOption
 	conn     *websocket.Conn
 	ctx      context.Context
 	cnl      context.CancelCauseFunc
@@ -122,11 +122,7 @@ func (obj *WebSock) recvMain() (err error) {
 	}
 }
 
-type WebSockOption struct {
-	Proxy string
-}
-
-func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string, option WebSockOption) (*WebSock, error) {
+func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string, option requests.RequestOption) (*WebSock, error) {
 	response, err := globalReqCli.Request(preCtx, "get", ws, requests.RequestOption{DisProxy: true})
 	if err != nil {
 		return nil, err

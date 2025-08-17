@@ -141,13 +141,7 @@ func (obj *Route) GetCacheKey(routeOption RequestOption) string {
 	md5Str := tools.Md5(fmt.Sprintf("%s,%s,%s", routeOption.Method, keyStr, routeOption.PostData))
 	return tools.Hex(md5Str)
 }
-func (obj *Route) Request(ctx context.Context, routeOption RequestOption, options ...requests.RequestOption) (fulData FulData, err error) {
-	option := requests.RequestOption{
-		Proxy: obj.webSock.option.Proxy,
-	}
-	if len(options) > 0 {
-		option = options[0]
-	}
+func (obj *Route) Request(ctx context.Context, routeOption RequestOption, option requests.RequestOption) (fulData FulData, err error) {
 	if routeOption.PostData != "" {
 		option.Body = routeOption.PostData
 	}
@@ -191,7 +185,7 @@ func (obj *Route) RequestContinue(ctx context.Context, options ...RequestOption)
 		option = obj.NewRequestOption()
 	}
 	obj.used = true
-	fulData, err := obj.Request(ctx, option)
+	fulData, err := obj.Request(ctx, option, obj.webSock.option)
 	if err != nil {
 		obj.Fail(ctx)
 	} else {

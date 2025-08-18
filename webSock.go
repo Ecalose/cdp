@@ -20,8 +20,8 @@ type commend struct {
 	SessionId string         `json:"sessionId,omitempty"`
 }
 type event struct {
-	Ctx      context.Context
-	Cnl      context.CancelFunc
+	// Ctx      context.Context
+	// Cnl      context.CancelFunc
 	RecvData chan RecvData
 }
 type RecvData struct {
@@ -76,7 +76,6 @@ func (obj *WebSock) recv(ctx context.Context, rd RecvData) error {
 			return errors.New("websocks closed")
 		case <-ctx.Done():
 			return context.Cause(ctx)
-		case <-cmdData.Ctx.Done():
 		case cmdData.RecvData <- rd:
 		}
 	}
@@ -157,14 +156,13 @@ func (obj *WebSock) Error() error {
 
 func (obj *WebSock) regId(preCtx context.Context, ids ...int64) *event {
 	data := new(event)
-	data.Ctx, data.Cnl = context.WithCancel(preCtx)
 	data.RecvData = make(chan RecvData)
 	for _, id := range ids {
 		obj.ids.Store(id, data)
 	}
 	return data
 }
-func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) {
+func (obj *WebSock) send(preCtx context.Context, cmd commend) (results RecvData, err error) {
 	var cnl context.CancelFunc
 	var ctx context.Context
 	if preCtx == nil {
@@ -173,6 +171,11 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 		ctx, cnl = context.WithTimeout(preCtx, time.Second*60)
 	}
 	defer cnl()
+	defer func() {
+		if err != nil {
+			obj.CloseWithError(err)
+		}
+	}()
 	select {
 	case <-obj.Done():
 		if obj.Error() != nil {
@@ -187,7 +190,6 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 	default:
 		cmd.Id = obj.id.Add(1)
 		idEvent := obj.regId(ctx, cmd.Id)
-		defer idEvent.Cnl()
 		if err := obj.conn.WriteMessage(websocket.TextMessage, cmd); err != nil {
 			return RecvData{}, err
 		}

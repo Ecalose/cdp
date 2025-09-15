@@ -5,7 +5,7 @@ go 1.25.0
 require (
 	github.com/gospider007/gson v0.0.0-20250910015455-b90779f323c3
 	github.com/gospider007/re v0.0.0-20250815031101-a57caeff73bf
-	github.com/gospider007/requests v0.0.0-20250911055403-c4eda42ad1f8
+	github.com/gospider007/requests v0.0.0-20250915113827-d650f81b1f69
 	github.com/gospider007/tools v0.0.0-20250910013838-e907a1d00f15
 	github.com/gospider007/websocket v0.0.0-20250910015749-cfe4efd76cf0
 )
@@ -29,13 +29,13 @@ require (
 	github.com/gospider007/bar v0.0.0-20250815030902-4f5b5d6312cf // indirect
 	github.com/gospider007/blog v0.0.0-20250815030743-f2af6b9013ab // indirect
 	github.com/gospider007/bs4 v0.0.0-20250815030800-a352d3ad57ee // indirect
-	github.com/gospider007/gtls v0.0.0-20250911055051-63d50218e5d6 // indirect
-	github.com/gospider007/http1 v0.0.0-20250911054749-f39451170c35 // indirect
+	github.com/gospider007/gtls v0.0.0-20250915113829-84c09a2e4011 // indirect
+	github.com/gospider007/http1 v0.0.0-20250915113818-d37c975a4755 // indirect
 	github.com/gospider007/http2 v0.0.0-20250911055102-de4dcc32042e // indirect
-	github.com/gospider007/http3 v0.0.0-20250911055103-a5048b756af7 // indirect
+	github.com/gospider007/http3 v0.0.0-20250915113826-c3ce20a90866 // indirect
 	github.com/gospider007/ja3 v0.0.0-20250908031106-827812269efe // indirect
 	github.com/gospider007/kinds v0.0.0-20250815031133-b2282666f69c // indirect
-	github.com/gospider007/netx v0.0.0-20250911055218-9139573019f3 // indirect
+	github.com/gospider007/netx v0.0.0-20250915113828-15e4858031b6 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.3.0 // indirect

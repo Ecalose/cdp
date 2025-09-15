@@ -109,15 +109,17 @@ func (obj *WebSock) FetchFulfillRequest(preCtx context.Context, requestId string
 	if fulData.ResponsePhrase == "" {
 		fulData.ResponsePhrase = "200 OK"
 	}
-
+	params := map[string]any{
+		"requestId":       requestId,
+		"responseCode":    fulData.StatusCode,
+		"responseHeaders": headers,
+		"responsePhrase":  fulData.ResponsePhrase,
+	}
+	if fulData.Body != "" {
+		params["body"] = tools.Base64Encode(fulData.Body)
+	}
 	return obj.send(preCtx, commend{
 		Method: "Fetch.fulfillRequest",
-		Params: map[string]any{
-			"requestId":       requestId,
-			"responseCode":    fulData.StatusCode,
-			"responseHeaders": headers,
-			"body":            tools.Base64Encode(fulData.Body),
-			"responsePhrase":  fulData.ResponsePhrase,
-		},
+		Params: params,
 	})
 }

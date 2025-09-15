@@ -162,7 +162,7 @@ func (obj *WebSock) regId(preCtx context.Context, ids ...int64) *event {
 	}
 	return data
 }
-func (obj *WebSock) send(preCtx context.Context, cmd commend) (results RecvData, err error) {
+func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) {
 	var cnl context.CancelFunc
 	var ctx context.Context
 	if preCtx == nil {
@@ -171,44 +171,31 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (results RecvData,
 		ctx, cnl = context.WithTimeout(preCtx, time.Second*60)
 	}
 	defer cnl()
-	defer func() {
-		if err != nil {
-			obj.CloseWithError(err)
-		}
-	}()
+	cmd.Id = obj.id.Add(1)
+	idEvent := obj.regId(ctx, cmd.Id)
+	if err := obj.conn.WriteMessage(websocket.TextMessage, cmd); err != nil {
+		obj.CloseWithError(err)
+		return RecvData{}, err
+	}
 	select {
 	case <-obj.Done():
-		if obj.Error() != nil {
-			return RecvData{}, obj.Error()
+		err := obj.Error()
+		if err == nil {
+			err = context.Cause(obj.ctx)
 		}
-		return RecvData{}, context.Cause(obj.ctx)
+		obj.CloseWithError(err)
+		return RecvData{}, err
 	case <-ctx.Done():
-		if obj.Error() != nil {
-			return RecvData{}, obj.Error()
+		err := obj.Error()
+		if err == nil {
+			err = context.Cause(ctx)
 		}
-		return RecvData{}, context.Cause(obj.ctx)
-	default:
-		cmd.Id = obj.id.Add(1)
-		idEvent := obj.regId(ctx, cmd.Id)
-		if err := obj.conn.WriteMessage(websocket.TextMessage, cmd); err != nil {
-			return RecvData{}, err
+		obj.CloseWithError(err)
+		return RecvData{}, err
+	case idRecvData := <-idEvent.RecvData:
+		if idRecvData.Error != nil {
+			return idRecvData, fmt.Errorf("websock error: %v", idRecvData.Error)
 		}
-		select {
-		case <-obj.Done():
-			if obj.Error() != nil {
-				return RecvData{}, obj.Error()
-			}
-			return RecvData{}, context.Cause(obj.ctx)
-		case <-ctx.Done():
-			if obj.Error() != nil {
-				return RecvData{}, obj.Error()
-			}
-			return RecvData{}, context.Cause(ctx)
-		case idRecvData := <-idEvent.RecvData:
-			if idRecvData.Error != nil {
-				return idRecvData, fmt.Errorf("websock error: %v", idRecvData.Error)
-			}
-			return idRecvData, nil
-		}
+		return idRecvData, nil
 	}
 }

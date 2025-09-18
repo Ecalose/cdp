@@ -76,6 +76,11 @@ func (obj *WebSock) NetworkEnable(preCtx context.Context) (RecvData, error) {
 		Method: "Network.enable",
 	})
 }
+func (obj *WebSock) NetworkDisable(preCtx context.Context) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Network.disable",
+	})
+}
 func (obj *WebSock) NetworkClearBrowserCookies(preCtx context.Context) (RecvData, error) {
 	return obj.send(preCtx, commend{
 		Method: "Network.clearBrowserCookies",

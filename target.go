@@ -4,13 +4,13 @@ import (
 	"context"
 )
 
-func (obj *WebSock) TargetCreateTarget(ctx context.Context, url string) (RecvData, error) {
+func (obj *WebSock) TargetCreateTarget(ctx context.Context, browserContextId string, url string) (RecvData, error) {
 	return obj.send(ctx, commend{
 		Method: "Target.createTarget",
 		Params: map[string]any{
-			// "browserContextId": browserContextId,
-			"url":            url,
-			"transitionType": "address_bar",
+			"browserContextId": browserContextId,
+			"url":              url,
+			"transitionType":   "address_bar",
 		},
 	})
 }

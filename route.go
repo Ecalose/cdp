@@ -21,6 +21,7 @@ type RequestOption struct {
 	Method   string      `json:"method"`
 	PostData string      `json:"postData"`
 	Headers  http.Header `json:"headers"`
+	Proxy    string
 }
 type RequestData struct {
 	Url              string            `json:"url"`
@@ -153,6 +154,9 @@ func (obj *Route) Request(ctx context.Context, routeOptions ...RequestOption) (f
 		option.Body = routeOption.PostData
 	}
 	option.Headers = routeOption.Headers
+	if routeOption.Proxy != "" {
+		option.Proxy = routeOption.Proxy
+	}
 	rs, err := obj.webSock.reqCli.Request(ctx, routeOption.Method, routeOption.Url, option)
 	if err != nil {
 		return fulData, err
@@ -186,14 +190,8 @@ func (obj *Route) FulFill(ctx context.Context, fulDatas ...FulData) error {
 	return err
 }
 func (obj *Route) RequestContinue(ctx context.Context, options ...RequestOption) (FulData, error) {
-	var option RequestOption
-	if len(options) > 0 {
-		option = options[0]
-	} else {
-		option = obj.NewRequestOption()
-	}
 	obj.used = true
-	fulData, err := obj.Request(ctx, option)
+	fulData, err := obj.Request(ctx, options...)
 	if err != nil {
 		obj.Fail(ctx)
 	} else {

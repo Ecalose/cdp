@@ -29,7 +29,7 @@ require (
 	github.com/gospider007/bar v0.0.0-20250815030902-4f5b5d6312cf // indirect
 	github.com/gospider007/blog v0.0.0-20250815030743-f2af6b9013ab // indirect
 	github.com/gospider007/bs4 v0.0.0-20250815030800-a352d3ad57ee // indirect
-	github.com/gospider007/gtls v0.0.0-20251015151517-7d9f3855f5f4 // indirect
+	github.com/gospider007/gtls v0.0.0-20251015154822-5fb43b5af685 // indirect
 	github.com/gospider007/http1 v0.0.0-20251011074703-a8d2e5a53aa0 // indirect
 	github.com/gospider007/http2 v0.0.0-20251015151551-cf004878b757 // indirect
 	github.com/gospider007/http3 v0.0.0-20251015142250-876e4baf5c98 // indirect

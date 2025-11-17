@@ -98,45 +98,65 @@ func (obj *WebSock) recvMain() (err error) {
 			return context.Cause(obj.ctx)
 		default:
 			msgType, con, err := obj.conn.ReadMessage()
-			if err != nil {
-				return err
-			}
-			switch msgType {
-			case websocket.TextMessage:
-				rd := RecvData{}
-				if _, err = gson.Decode(con, &rd); err == nil {
-					if rd.Id == 0 {
-						rd.Id = obj.id.Add(1)
+			if err == nil {
+				switch msgType {
+				case websocket.TextMessage:
+					rd := RecvData{}
+					if _, err = gson.Decode(con, &rd); err == nil {
+						if rd.Id == 0 {
+							rd.Id = obj.id.Add(1)
+						}
+						go obj.recv(obj.ctx, rd)
 					}
-					go obj.recv(obj.ctx, rd)
+				case websocket.PingMessage:
+					obj.conn.WriteMessage(websocket.PongMessage, con)
+				case websocket.CloseMessage:
+					return errors.New("websock closed")
+				default:
+					return errors.New("websock unknown message type")
 				}
-			case websocket.PingMessage:
-				obj.conn.WriteMessage(websocket.PongMessage, con)
-			case websocket.CloseMessage:
-				return errors.New("websock closed")
-			default:
-				return errors.New("websock unknown message type")
+			} else if obj.newWsTry() != nil {
+				return err
 			}
 		}
 	}
 }
-
-func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string, option requests.RequestOption) (*WebSock, error) {
-	response, err := globalReqCli.Request(preCtx, "get", ws, requests.RequestOption{DisProxy: true})
+func (obj *WebSock) newWs() error {
+	response, err := obj.reqCli.Request(obj.ctx, "get", obj.ws, requests.RequestOption{DisProxy: true})
 	if err != nil {
-		return nil, err
+		return err
 	}
 	conn := response.WebSocket()
 	if conn == nil {
-		return nil, errors.New("new websock error")
+		return errors.New("new websock error")
 	}
+	obj.conn = conn
+	return nil
+}
+func (obj *WebSock) newWsTry(nums ...int) error {
+	num := 3
+	if len(nums) > 0 {
+		num = nums[0]
+	}
+	for i := 0; i < num; i++ {
+		err := obj.newWs()
+		if err == nil {
+			return nil
+		}
+	}
+	return errors.New("new websock error")
+}
+func NewWebSock(preCtx context.Context, globalReqCli *requests.Client, ws string, option requests.RequestOption) (*WebSock, error) {
 	cli := &WebSock{
 		ws:     ws,
-		conn:   response.WebSocket(),
 		reqCli: globalReqCli,
 		option: option,
 	}
 	cli.ctx, cli.cnl = context.WithCancelCause(preCtx)
+	err := cli.newWsTry()
+	if err != nil {
+		return nil, err
+	}
 	go cli.recvMain()
 	return cli, err
 }

@@ -8,7 +8,7 @@ func (obj *WebSock) RuntimeEvaluate(ctx context.Context, expression string) (Rec
 	return obj.send(ctx, commend{
 		Method: "Runtime.evaluate",
 		Params: map[string]any{
-			"disableBreaks":               true,       //执行期间禁用断点
+			// "disableBreaks":               true,       //执行期间禁用断点
 			"awaitPromise":                true,       //异步函数
 			"expression":                  expression, //表达式
 			"returnByValue":               true,

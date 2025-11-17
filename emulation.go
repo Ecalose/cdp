@@ -4,14 +4,68 @@ import (
 	"context"
 )
 
+// "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+//       "userAgentData": {
+//         "brands": [{
+//           "brand": "Not;A=Brand",
+//           "version": "99"
+//         }, {
+//           "brand": "Google Chrome",
+//           "version": "139"
+//         }, {
+//           "brand": "Chromium",
+//           "version": "139"
+//         }],
+//         "mobile": false,
+//         "platform": "macOS"
+//       },
+//       "language": "en-US",
+//       "languages": ["en-US"],
+//       "platform": "MacIntel",
+//       "deviceMemory": 8,
+//       "hardwareConcurrency": 4,
+//       "maxTouchPoints": 0,
+//       "product": "Gecko",
+//       "productSub": "20030107",
+//       "vendor": "Google Inc.",
+//       "vendorSub": null,
+//       "doNotTrack": null,
+//       "appCodeName": "Mozilla",
+//       "appName": "Netscape",
+
+type UserAgentBrandVersion struct {
+	Brand   string `json:"brand"`
+	Version string `json:"version"`
+}
+type UserAgentMetadata struct {
+	// Brands          []UserAgentBrandVersion `json:"brands"`
+	// FullVersionList []UserAgentBrandVersion `json:"fullVersionList"`
+	// FullVersion     string                  `json:"fullVersion"`
+	Platform        string `json:"platform"`
+	PlatformVersion string `json:"platformVersion"`
+	Architecture    string `json:"architecture"`
+	Model           string `json:"model"`
+	Mobile          bool   `json:"mobile"`
+	// Bitness         string   `json:"bitness"`
+	// Wow64           bool     `json:"wow64"`
+	// FormFactors     []string `json:"formFactors"`
+}
+
 // 设置userAgent
 func (obj *WebSock) EmulationSetUserAgentOverride(preCtx context.Context, userAgent string, acceptLanguage string) (RecvData, error) {
 	params := map[string]any{
-		"userAgent": userAgent,
+		"userAgent":      userAgent,
+		"acceptLanguage": acceptLanguage,
+		"platform":       "MacIntel",
+		"userAgentMetadata": UserAgentMetadata{
+			Platform:        "macOS",
+			PlatformVersion: "",
+			Architecture:    "",
+			Model:           "",
+			Mobile:          false,
+		},
 	}
-	if acceptLanguage != "" {
-		params["acceptLanguage"] = acceptLanguage
-	}
+
 	return obj.send(preCtx, commend{
 		Method: "Emulation.setUserAgentOverride",
 		Params: params,

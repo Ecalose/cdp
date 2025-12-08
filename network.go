@@ -107,3 +107,13 @@ func (obj *WebSock) NetworkSetCacheDisabled(preCtx context.Context, cacheDisable
 		},
 	})
 }
+func (obj *WebSock) NetworkSetUserAgentOverride(preCtx context.Context, userAgent string, acceptLanguage string) (RecvData, error) {
+	params := autoBuildUAParams(userAgent)
+	if acceptLanguage != "" {
+		params["acceptLanguage"] = acceptLanguage
+	}
+	return obj.send(preCtx, commend{
+		Method: "Network.setUserAgentOverride",
+		Params: params,
+	})
+}

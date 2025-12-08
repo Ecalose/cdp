@@ -73,12 +73,25 @@ func (obj *WebSock) PageReload(ctx context.Context) (RecvData, error) {
 		Params: map[string]any{},
 	})
 }
-func (obj *WebSock) PageNavigate(ctx context.Context, url string) (RecvData, error) {
+
+type PageNavigateOption struct {
+	Referrer string
+}
+
+func (obj *WebSock) PageNavigate(ctx context.Context, url string, options ...PageNavigateOption) (RecvData, error) {
+	var option PageNavigateOption
+	if len(options) > 0 {
+		option = options[0]
+	}
+	params := map[string]any{
+		"url": url,
+	}
+	if option.Referrer != "" {
+		params["referrer"] = option.Referrer
+	}
 	return obj.send(ctx, commend{
 		Method: "Page.navigate",
-		Params: map[string]any{
-			"url": url,
-		},
+		Params: params,
 	})
 }
 

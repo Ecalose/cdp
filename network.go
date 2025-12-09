@@ -117,3 +117,11 @@ func (obj *WebSock) NetworkSetUserAgentOverride(preCtx context.Context, userAgen
 		Params: params,
 	})
 }
+func (obj *WebSock) NetworkSetExtraHTTPHeaders(preCtx context.Context, headers map[string]string) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Network.setExtraHTTPHeaders",
+		Params: map[string]any{
+			"headers": headers,
+		},
+	})
+}

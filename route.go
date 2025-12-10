@@ -11,6 +11,7 @@ import (
 	"net/http"
 
 	"github.com/gospider007/gson"
+	"github.com/gospider007/netx"
 	"github.com/gospider007/re"
 	"github.com/gospider007/requests"
 	"github.com/gospider007/tools"
@@ -142,7 +143,7 @@ func (obj *Route) GetCacheKey(routeOption RequestOption) string {
 	md5Str := tools.Md5(fmt.Sprintf("%s,%s,%s", routeOption.Method, keyStr, routeOption.PostData))
 	return tools.Hex(md5Str)
 }
-func (obj *Route) Request(ctx context.Context, routeOptions ...RequestOption) (fulData FulData, err error) {
+func (obj *Route) request(ctx context.Context, enableBandwidthStats bool, routeOptions ...RequestOption) (fulData FulData, r, w int64, err error) {
 	var routeOption RequestOption
 	if len(routeOptions) > 0 {
 		routeOption = routeOptions[0]
@@ -157,15 +158,19 @@ func (obj *Route) Request(ctx context.Context, routeOptions ...RequestOption) (f
 	if routeOption.Proxy != "" {
 		option.Proxy = routeOption.Proxy
 	}
+	option.DialOption = &netx.DialOption{
+		EnableBandwidthStats: enableBandwidthStats,
+	}
 	rs, err := obj.webSock.reqCli.Request(ctx, routeOption.Method, routeOption.Url, option)
 	if err != nil {
-		return fulData, err
+		return fulData, 0, 0, err
 	}
+	bwStatus := rs.BWStatus()
+	r, w = bwStatus.R(), bwStatus.W()
 	fulData.StatusCode = rs.StatusCode()
 	fulData.Body = rs.Text()
 	fulData.Headers = rs.Headers()
 	fulData.ResponsePhrase = rs.Status()
-
 	if rs.WebSocket() != nil {
 		rs.WebSocket().Close()
 	}
@@ -188,6 +193,23 @@ func (obj *Route) FulFill(ctx context.Context, fulDatas ...FulData) error {
 		obj.Fail(ctx)
 	}
 	return err
+}
+func (obj *Route) Request(ctx context.Context, routeOptions ...RequestOption) (fulData FulData, err error) {
+	f, _, _, err := obj.request(ctx, false, routeOptions...)
+	return f, err
+}
+func (obj *Route) RequestWithBandwidth(ctx context.Context, routeOptions ...RequestOption) (fulData FulData, r, w int64, err error) {
+	return obj.request(ctx, true, routeOptions...)
+}
+func (obj *Route) RequestContinueWithBandwidth(ctx context.Context, options ...RequestOption) (FulData, int64, int64, error) {
+	obj.used = true
+	fulData, r, w, err := obj.RequestWithBandwidth(ctx, options...)
+	if err != nil {
+		obj.Fail(ctx)
+	} else {
+		err = obj.FulFill(ctx, fulData)
+	}
+	return fulData, r, w, err
 }
 func (obj *Route) RequestContinue(ctx context.Context, options ...RequestOption) (FulData, error) {
 	obj.used = true

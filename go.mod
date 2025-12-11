@@ -30,7 +30,7 @@ require (
 	github.com/google/pprof v0.0.0-20251208000136-3d256cb9ff16 // indirect
 	github.com/gospider007/bar v0.0.0-20250815030902-4f5b5d6312cf // indirect
 	github.com/gospider007/blog v0.0.0-20250815030743-f2af6b9013ab // indirect
-	github.com/gospider007/bs4 v0.0.0-20251117061355-2c9c42c909c9 // indirect
+	github.com/gospider007/bs4 v0.0.0-20251211082451-3f915e7cbf5f // indirect
 	github.com/gospider007/conf v0.0.0-20250815031235-1df45ae2e117 // indirect
 	github.com/gospider007/gtls v0.0.0-20251210003351-d6a332efe3d9 // indirect
 	github.com/gospider007/http1 v0.0.0-20251210145155-d2f328f79261 // indirect

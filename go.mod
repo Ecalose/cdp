@@ -6,9 +6,9 @@ require (
 	github.com/gospider007/gson v0.0.0-20251211084510-ba906b2318d6
 	github.com/gospider007/netx v0.0.0-20251210145323-b978e3f0b531
 	github.com/gospider007/re v0.0.0-20250815031101-a57caeff73bf
-	github.com/gospider007/requests v0.0.0-20251211084515-fa4c6246eeae
+	github.com/gospider007/requests v0.0.0-20251211084625-96bcfae54b6a
 	github.com/gospider007/tools v0.0.0-20251209055936-a37812a2b732
-	github.com/gospider007/websocket v0.0.0-20251209060218-5905aeb62d8f
+	github.com/gospider007/websocket v0.0.0-20251211084630-d7ced0229629
 	github.com/mileusna/useragent v1.3.5
 )
 

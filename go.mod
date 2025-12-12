@@ -4,9 +4,9 @@ go 1.25.0
 
 require (
 	github.com/gospider007/gson v0.0.0-20251211084510-ba906b2318d6
-	github.com/gospider007/netx v0.0.0-20251210145323-b978e3f0b531
+	github.com/gospider007/netx v0.0.0-20251212054202-a128a7f5e254
 	github.com/gospider007/re v0.0.0-20250815031101-a57caeff73bf
-	github.com/gospider007/requests v0.0.0-20251211084719-84c4f1e3d681
+	github.com/gospider007/requests v0.0.0-20251212054202-d910628b5fdd
 	github.com/gospider007/tools v0.0.0-20251209055936-a37812a2b732
 	github.com/gospider007/websocket v0.0.0-20251211084630-d7ced0229629
 	github.com/mileusna/useragent v1.3.5
@@ -32,7 +32,7 @@ require (
 	github.com/gospider007/blog v0.0.0-20250815030743-f2af6b9013ab // indirect
 	github.com/gospider007/bs4 v0.0.0-20251211082451-3f915e7cbf5f // indirect
 	github.com/gospider007/conf v0.0.0-20250815031235-1df45ae2e117 // indirect
-	github.com/gospider007/gtls v0.0.0-20251210003351-d6a332efe3d9 // indirect
+	github.com/gospider007/gtls v0.0.0-20251212054159-98cde17f0b9a // indirect
 	github.com/gospider007/http1 v0.0.0-20251210145155-d2f328f79261 // indirect
 	github.com/gospider007/http2 v0.0.0-20251210145238-2163abd88362 // indirect
 	github.com/gospider007/http3 v0.0.0-20251210145258-b09aaf3704c1 // indirect

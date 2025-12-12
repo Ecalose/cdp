@@ -127,6 +127,9 @@ func (obj *Route) Headers() http.Header {
 	}
 	return head
 }
+func (obj *Route) SetHeader(key, val string) {
+	obj.recvData.Request.Headers[key] = val
+}
 func (obj *Route) Cookies() (requests.Cookies, error) {
 	return requests.ReadCookies(obj.Headers())
 }

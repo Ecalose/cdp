@@ -46,11 +46,11 @@ type WebSock struct {
 }
 
 type RouteData struct {
-	RequestId    string      `json:"requestId"`
-	Request      RequestData `json:"request"`
-	FrameId      string      `json:"frameId"`
-	NetworkId    string      `json:"networkId"`
-	ResourceType string      `json:"resourceType"`
+	RequestId    string       `json:"requestId"`
+	Request      RequestData  `json:"request"`
+	FrameId      string       `json:"frameId"`
+	NetworkId    string       `json:"networkId"`
+	ResourceType ResourceType `json:"resourceType"`
 
 	ResponseErrorReason string   `json:"responseErrorReason"`
 	ResponseStatusCode  int      `json:"responseStatusCode"`

@@ -103,8 +103,31 @@ func (obj *Route) NewFulData(ctx context.Context) (fulData FulData, err error) {
 	return
 }
 
+type ResourceType string
+
+const (
+	ResourceTypeDocument           ResourceType = "Document"
+	ResourceTypeStylesheet         ResourceType = "Stylesheet"
+	ResourceTypeImage              ResourceType = "Image"
+	ResourceTypeMedia              ResourceType = "Media"
+	ResourceTypeFont               ResourceType = "Font"
+	ResourceTypeScript             ResourceType = "Script"
+	ResourceTypeTextTrack          ResourceType = "TextTrack"
+	ResourceTypeXHR                ResourceType = "XHR"
+	ResourceTypeFetch              ResourceType = "Fetch"
+	ResourceTypePrefetch           ResourceType = "Prefetch"
+	ResourceTypeEventSource        ResourceType = "EventSource"
+	ResourceTypeWebSocket          ResourceType = "WebSocket"
+	ResourceTypeManifest           ResourceType = "Manifest"
+	ResourceTypeSignedExchange     ResourceType = "SignedExchange"
+	ResourceTypePing               ResourceType = "Ping"
+	ResourceTypeCSPViolationReport ResourceType = "CSPViolationReport"
+	ResourceTypePreflight          ResourceType = "Preflight"
+	ResourceTypeOther              ResourceType = "Other"
+)
+
 // Document, Stylesheet, Image, Media, Font, Script, TextTrack, XHR, Fetch, Prefetch, EventSource, WebSocket, Manifest, SignedExchange, Ping, CSPViolationReport, Preflight, Other
-func (obj *Route) ResourceType() string {
+func (obj *Route) ResourceType() ResourceType {
 	return obj.recvData.ResourceType
 }
 func (obj *Route) Url() string {

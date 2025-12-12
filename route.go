@@ -192,7 +192,9 @@ func (obj *Route) request(ctx context.Context, enableBandwidthStats bool, routeO
 		return fulData, 0, 0, err
 	}
 	bwStatus := rs.BWStatus()
-	r, w = bwStatus.R(), bwStatus.W()
+	if enableBandwidthStats {
+		r, w = bwStatus.R(), bwStatus.W()
+	}
 	fulData.StatusCode = rs.StatusCode()
 	fulData.Body = rs.Text()
 	fulData.Headers = rs.Headers()

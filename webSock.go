@@ -19,9 +19,6 @@ type commend struct {
 	Params    map[string]any `json:"params,omitempty"`
 	SessionId string         `json:"sessionId,omitempty"`
 }
-type event struct {
-	RecvData chan RecvData
-}
 type RecvData struct {
 	Id     int64          `json:"id"`
 	Method string         `json:"method"`
@@ -33,7 +30,6 @@ type RecvData struct {
 type WebSock struct {
 	ws       string
 	err      error
-	option   requests.RequestOption
 	conn     *websocket.Conn
 	ctx      context.Context
 	cnl      context.CancelCauseFunc
@@ -64,13 +60,13 @@ func (obj *WebSock) recv(ctx context.Context, rd RecvData) error {
 	defer recover()
 	cmdDataAny, ok := obj.ids.LoadAndDelete(rd.Id)
 	if ok {
-		cmdData := cmdDataAny.(*event)
+		cmdData := cmdDataAny.(chan RecvData)
 		select {
 		case <-obj.Context().Done():
 			return errors.New("websocks closed")
 		case <-ctx.Done():
 			return context.Cause(ctx)
-		case cmdData.RecvData <- rd:
+		case cmdData <- rd:
 		}
 	}
 	methodFuncAny, ok := obj.onEvents.Load(rd.Method)
@@ -114,6 +110,9 @@ func (obj *WebSock) recvMain() (err error) {
 		}
 	}
 }
+func (obj *WebSock) RequestsClient() *requests.Client {
+	return obj.reqCli
+}
 func (obj *WebSock) newWs() error {
 	response, err := obj.reqCli.Request(obj.ctx, "get", obj.ws, requests.RequestOption{DisProxy: true})
 	if err != nil {
@@ -127,10 +126,9 @@ func (obj *WebSock) newWs() error {
 	return nil
 }
 
-func NewWebSock(preCtx context.Context, reqCli *requests.Client, ws string, option requests.RequestOption) (*WebSock, error) {
+func NewWebSock(preCtx context.Context, reqCli *requests.Client, ws string) (*WebSock, error) {
 	cli := &WebSock{
-		ws:     ws,
-		option: option,
+		ws: ws,
 	}
 	cli.ctx, cli.cnl = context.WithCancelCause(preCtx)
 	var err error
@@ -163,13 +161,14 @@ func (obj *WebSock) Error() error {
 	return obj.err
 }
 
-func (obj *WebSock) regId(ids ...int64) *event {
-	data := new(event)
-	data.RecvData = make(chan RecvData)
-	for _, id := range ids {
-		obj.ids.Store(id, data)
+func (obj *WebSock) regId(id int64) (chan RecvData, error) {
+	_, ok := obj.ids.Load(id)
+	if ok {
+		return nil, errors.New("id already exists")
 	}
-	return data
+	data := make(chan RecvData, 1)
+	obj.ids.Store(id, data)
+	return data, nil
 }
 func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) {
 	var cnl context.CancelFunc
@@ -181,7 +180,10 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 	}
 	defer cnl()
 	cmd.Id = obj.id.Add(1)
-	idEvent := obj.regId(cmd.Id)
+	idEvent, err := obj.regId(cmd.Id)
+	if err != nil {
+		return RecvData{}, err
+	}
 	if err := obj.conn.WriteMessage(websocket.TextMessage, cmd); err != nil {
 		obj.CloseWithError(err)
 		return RecvData{}, err
@@ -201,7 +203,7 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 		}
 		obj.CloseWithError(err)
 		return RecvData{}, err
-	case idRecvData := <-idEvent.RecvData:
+	case idRecvData := <-idEvent:
 		if idRecvData.Error != nil {
 			return idRecvData, fmt.Errorf("websock error: %v", idRecvData.Error)
 		}

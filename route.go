@@ -49,6 +49,9 @@ type Route struct {
 func NewRoute(webSock *WebSock, recvData RouteData) *Route {
 	return &Route{webSock: webSock, recvData: recvData}
 }
+func (obj *Route) WebSock() *WebSock {
+	return obj.webSock
+}
 func (obj *Route) Used() bool {
 	return obj.used
 }
@@ -133,6 +136,9 @@ func (obj *Route) ResourceType() ResourceType {
 func (obj *Route) Url() string {
 	return obj.recvData.Request.Url
 }
+func (obj *Route) SetUrl(href string) {
+	obj.recvData.Request.Url = href
+}
 func (obj *Route) Method() string {
 	return obj.recvData.Request.Method
 }
@@ -176,7 +182,7 @@ func (obj *Route) request(ctx context.Context, enableBandwidthStats bool, routeO
 	} else {
 		routeOption = obj.NewRequestOption()
 	}
-	option := obj.webSock.option
+	var option requests.RequestOption
 	if routeOption.PostData != "" {
 		option.Body = routeOption.PostData
 	}
@@ -252,6 +258,10 @@ func (obj *Route) RequestContinue(ctx context.Context, options ...RequestOption)
 
 func (obj *Route) Continue(ctx context.Context, options ...RequestOption) error {
 	obj.used = true
+	if obj.webSock.reqCli.ClientOption.Proxy != "" || obj.webSock.reqCli.ClientOption.GetProxy != nil {
+		_, err := obj.RequestContinue(ctx, options...)
+		return err
+	}
 	_, err := obj.webSock.FetchContinueRequest(ctx, obj.recvData.RequestId, options...)
 	if err != nil {
 		obj.Fail(ctx)

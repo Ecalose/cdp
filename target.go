@@ -33,6 +33,24 @@ func (obj *WebSock) TargetSetAutoAttach(ctx context.Context) (RecvData, error) {
 	})
 }
 
+type TargetFilter struct {
+	Type    string `json:"type"`
+	Exclude bool   `json:"exclude"`
+}
+
+func (obj *WebSock) TargetSetDiscoverTargets(ctx context.Context, discover bool, filters ...TargetFilter) (RecvData, error) {
+	params := map[string]any{
+		"discover": discover,
+	}
+	if len(filters) > 0 {
+		params["filter"] = filters
+	}
+	return obj.send(ctx, commend{
+		Method: "Target.setDiscoverTargets",
+		Params: params,
+	})
+}
+
 func (obj *WebSock) TargetCreateBrowserContext(ctx context.Context) (RecvData, error) {
 	return obj.send(ctx, commend{
 		Method: "Target.createBrowserContext",

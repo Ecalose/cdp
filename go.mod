@@ -33,7 +33,7 @@ require (
 	github.com/gospider007/bs4 v0.0.0-20251212071442-cda0a39e7829 // indirect
 	github.com/gospider007/conf v0.0.0-20250815031235-1df45ae2e117 // indirect
 	github.com/gospider007/gtls v0.0.0-20251223031109-2bf2f614bad4 // indirect
-	github.com/gospider007/http1 v0.0.0-20251212071445-045cb580235e // indirect
+	github.com/gospider007/http1 v0.0.0-20251230082047-45e747b086b5 // indirect
 	github.com/gospider007/http2 v0.0.0-20251223031110-720acc7bf923 // indirect
 	github.com/gospider007/http3 v0.0.0-20251223030948-dfedcc1864d9 // indirect
 	github.com/gospider007/ja3 v0.0.0-20251223030950-b21c86f47a7a // indirect

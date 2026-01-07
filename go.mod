@@ -6,7 +6,7 @@ require (
 	github.com/gospider007/gson v0.0.0-20251223030944-2672b6228d68
 	github.com/gospider007/netx v0.0.0-20260107090131-c9798892c813
 	github.com/gospider007/re v0.0.0-20251212071142-f56bce921150
-	github.com/gospider007/requests v0.0.0-20260107090132-f68e5a84d82e
+	github.com/gospider007/requests v0.0.0-20260107090220-4e93d6bf8579
 	github.com/gospider007/tools v0.0.0-20251212071315-d05548ab517e
 	github.com/gospider007/websocket v0.0.0-20251223031124-c72a2b252210
 	github.com/mileusna/useragent v1.3.5

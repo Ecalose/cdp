@@ -46,8 +46,14 @@ type Route struct {
 	used     bool
 }
 
+func (obj *Route) init() {
+
+}
+
 func NewRoute(webSock *WebSock, recvData RouteData) *Route {
-	return &Route{webSock: webSock, recvData: recvData}
+	r := &Route{webSock: webSock, recvData: recvData}
+	r.init()
+	return r
 }
 func (obj *Route) WebSock() *WebSock {
 	return obj.webSock

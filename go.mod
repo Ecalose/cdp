@@ -4,9 +4,9 @@ go 1.25.0
 
 require (
 	github.com/gospider007/gson v0.0.0-20260112022748-8af30d87bb47
-	github.com/gospider007/netx v0.0.0-20260112022828-b444119420b9
+	github.com/gospider007/netx v0.0.0-20260112022912-c343736816ba
 	github.com/gospider007/re v0.0.0-20251212071142-f56bce921150
-	github.com/gospider007/requests v0.0.0-20260112022848-b581afdd4abf
+	github.com/gospider007/requests v0.0.0-20260112022929-ae76279991f1
 	github.com/gospider007/tools v0.0.0-20260112022617-50048b32a16a
 	github.com/gospider007/websocket v0.0.0-20260112022830-3affea55dc89
 	github.com/mileusna/useragent v1.3.5

@@ -4,11 +4,11 @@ go 1.25.0
 
 require (
 	github.com/gospider007/gson v0.0.0-20260120074724-2ff4db9f71c8
-	github.com/gospider007/netx v0.0.0-20260120074752-03b0b011a96f
+	github.com/gospider007/netx v0.0.0-20260120074920-bea3e6be220a
 	github.com/gospider007/re v0.0.0-20251212071142-f56bce921150
-	github.com/gospider007/requests v0.0.0-20260120074645-6e962847aa7b
+	github.com/gospider007/requests v0.0.0-20260120074915-1622616e5a2e
 	github.com/gospider007/tools v0.0.0-20260120074453-dbd9d4748c8a
-	github.com/gospider007/websocket v0.0.0-20260120074703-615590a371f5
+	github.com/gospider007/websocket v0.0.0-20260120074831-3b97ebfb084e
 	github.com/mileusna/useragent v1.3.5
 )
 

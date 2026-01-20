@@ -165,6 +165,9 @@ func (obj *Route) Headers() http.Header {
 func (obj *Route) SetHeader(key, val string) {
 	obj.recvData.Request.Headers[key] = val
 }
+func (obj *Route) DelHeader(key string) {
+	delete(obj.recvData.Request.Headers, key)
+}
 func (obj *Route) Cookies() (requests.Cookies, error) {
 	return requests.ReadCookies(obj.Headers())
 }
@@ -264,7 +267,7 @@ func (obj *Route) RequestContinue(ctx context.Context, options ...RequestOption)
 
 func (obj *Route) Continue(ctx context.Context, options ...RequestOption) error {
 	obj.used = true
-	if obj.webSock.reqCli.ClientOption.Proxy != "" || obj.webSock.reqCli.ClientOption.GetProxy != nil {
+	if obj.webSock.reqCli.ClientOption.Proxy != nil || obj.webSock.reqCli.ClientOption.GetProxy != nil {
 		_, err := obj.RequestContinue(ctx, options...)
 		return err
 	}

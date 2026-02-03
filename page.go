@@ -40,21 +40,19 @@ func (obj *WebSock) PageCaptureScreenshot(ctx context.Context, rect Rect, option
 	}
 	params := map[string]any{
 		"format":                option.Format,
-		"quality":               option.Quality,
 		"captureBeyondViewport": option.CaptureBeyondViewport,
-		"clip": map[string]float64{
+	}
+	if rect.Width > 0 && rect.Height > 0 {
+		params["clip"] = map[string]float64{
 			"x":      rect.X,
 			"y":      rect.Y,
 			"width":  rect.Width,
 			"height": rect.Height,
 			"scale":  1,
-		},
+		}
 	}
-	if rect.Width == 0 || rect.Height == 0 {
-		delete(params, "clip")
-	}
-	if option.Quality == 0 {
-		delete(params, "quality")
+	if option.Quality > 0 {
+		params["quality"] = option.Quality
 	}
 	return obj.send(ctx, commend{
 		Method: "Page.captureScreenshot",

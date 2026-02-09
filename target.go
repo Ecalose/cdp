@@ -22,6 +22,14 @@ func (obj *WebSock) TargetCloseTarget(targetId string) (RecvData, error) {
 		},
 	})
 }
+func (obj *WebSock) TargetDetachFromTarget(sessionId string) (RecvData, error) {
+	return obj.send(obj.ctx, commend{
+		Method: "Target.detachFromTarget",
+		Params: map[string]any{
+			"sessionId": sessionId,
+		},
+	})
+}
 func (obj *WebSock) TargetSetAutoAttach(ctx context.Context) (RecvData, error) {
 	return obj.send(ctx, commend{
 		Method: "Target.setAutoAttach",
@@ -51,12 +59,16 @@ func (obj *WebSock) TargetSetDiscoverTargets(ctx context.Context, discover bool,
 	})
 }
 
-func (obj *WebSock) TargetCreateBrowserContext(ctx context.Context) (RecvData, error) {
+func (obj *WebSock) TargetCreateBrowserContext(ctx context.Context, proxyServer string) (RecvData, error) {
+	params := map[string]any{
+		"disposeOnDetach": true,
+	}
+	if proxyServer != "" {
+		params["proxyServer"] = proxyServer
+	}
 	return obj.send(ctx, commend{
 		Method: "Target.createBrowserContext",
-		Params: map[string]any{
-			"disposeOnDetach": true,
-		},
+		Params: params,
 	})
 }
 func (obj *WebSock) TargetDisposeBrowserContext(browserContextId string) (RecvData, error) {

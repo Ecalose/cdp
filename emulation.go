@@ -4,52 +4,11 @@ import (
 	"context"
 )
 
-//	type UserAgentBrandVersion struct {
-//		Brand   string `json:"brand"`
-//		Version string `json:"version"`
-//	}
-type UserAgentMetadata struct {
-	// Brands          []UserAgentBrandVersion `json:"brands"`
-	// FullVersionList []UserAgentBrandVersion `json:"fullVersionList"`
-	// FullVersion     string                  `json:"fullVersion"`
-	Platform        string `json:"platform"`
-	PlatformVersion string `json:"platformVersion"`
-	Architecture    string `json:"architecture"`
-	Model           string `json:"model"`
-	Mobile          bool   `json:"mobile"`
-	// Bitness         string   `json:"bitness"`
-	// Wow64           bool     `json:"wow64"`
-	// FormFactors     []string `json:"formFactors"`
-}
-
-//	map[string]any{
-//			"userAgent":      userAgent,
-//			"acceptLanguage": acceptLanguage,
-//			"platform":       platform,
-//			"userAgentMetadata": UserAgentMetadata{
-//				Platform:        ua.OS,
-//				PlatformVersion: strings.ReplaceAll(ua.OSVersion, "_", "."),
-//				Architecture:    "",
-//				Model:           "",
-//				Mobile:          ua.Mobile,
-//			},
-//		}
-type EmulationSetUserAgentOverrideOption struct {
-	UserAgent         string            `json:"userAgent"`
-	AcceptLanguage    string            `json:"acceptLanguage"`
-	Platform          string            `json:"platform"`
-	UserAgentMetadata UserAgentMetadata `json:"userAgentMetadata"`
-}
-
 // 设置userAgent
 func (obj *WebSock) EmulationSetUserAgentOverride(preCtx context.Context, userAgent string, acceptLanguage string) (RecvData, error) {
-	params := autoBuildUAParams(userAgent)
-	if acceptLanguage != "" {
-		params["acceptLanguage"] = acceptLanguage
-	}
 	return obj.send(preCtx, commend{
 		Method: "Emulation.setUserAgentOverride",
-		Params: params,
+		Params: autoBuildUAParams(userAgent, acceptLanguage),
 	})
 }
 

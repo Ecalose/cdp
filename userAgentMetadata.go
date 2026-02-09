@@ -1,43 +1,51 @@
 package cdp
 
-import (
-	"strings"
-
-	"github.com/mileusna/useragent"
-)
-
-func autoBuildUAParams(userAgent string) map[string]any {
-	ua := useragent.Parse(userAgent)
-	platform := detectPlatform(ua.OS)
-	return map[string]any{
-		"userAgent": userAgent,
-		"platform":  platform,
-		"userAgentMetadata": UserAgentMetadata{
-			Platform:        ua.OS,
-			PlatformVersion: strings.ReplaceAll(ua.OSVersion, "_", "."),
-			Architecture:    "",
-			Model:           "",
-			Mobile:          ua.Mobile,
+var userAgentMetadata = map[string]any{
+	"brands": []map[string]string{
+		{
+			"brand":   "Chromium",
+			"version": "143",
 		},
-	}
+		{
+			"brand":   "Not A(Brand",
+			"version": "24",
+		},
+	},
+	"fullVersionList": []map[string]string{},
+	"platform":        "macOS",
+	"platformVersion": "",
+	"architecture":    "",
+	"bitness":         "",
+	"uaFullVersion":   "",
+	"model":           "",
+	"mobile":          false,
+	"wow64":           false,
+	"formFactors":     []string{},
 }
 
-func detectPlatform(ua string) string {
-	ua = strings.ToLower(ua)
-	switch {
-	case strings.Contains(ua, "mac"):
-		return "MacIntel"
-	case strings.Contains(ua, "windows"):
-		return "Win32"
-	case strings.Contains(ua, "linux"):
-		return "Linux x86_64"
-	case strings.Contains(ua, "iphone"):
-		return "iPhone"
-	case strings.Contains(ua, "ipad"):
-		return "iPad"
-	case strings.Contains(ua, "android"):
-		return "Linux armv8l"
-	default:
-		return "Unknown"
+// await navigator.userAgentData.getHighEntropyValues([
+//
+//	'brands',
+//	'fullVersionList',
+//	'platform',
+//	'platformVersion',
+//	'architecture',
+//	'bitness',
+//	'uaFullVersion',
+//	'model',
+//	'mobile',
+//	'wow64',
+//	'formFactors',
+//
+// ]);
+func autoBuildUAParams(userAgent string, acceptLanguage string) map[string]any {
+	params := map[string]any{
+		"userAgent":         userAgent,
+		"platform":          "MacIntel",
+		"userAgentMetadata": userAgentMetadata,
 	}
+	if acceptLanguage != "" {
+		params["acceptLanguage"] = acceptLanguage
+	}
+	return params
 }

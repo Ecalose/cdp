@@ -1,6 +1,6 @@
 module github.com/gospider007/cdp
 
-go 1.25.0
+go 1.26.0
 
 require (
 	github.com/gospider007/gson v0.0.0-20260211034938-b6b8efb49705

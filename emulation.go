@@ -2,6 +2,7 @@ package cdp
 
 import (
 	"context"
+	"strings"
 )
 
 // 设置userAgent
@@ -81,10 +82,14 @@ func (obj *WebSock) EmulationSetAutomationOverride(preCtx context.Context, enabl
 
 // 使用指定的区域设置覆盖默认主机系统区域设置。例如： en_US
 func (obj *WebSock) EmulationSetLocaleOverride(preCtx context.Context, locale string) (RecvData, error) {
+	key, _, ok := strings.Cut(locale, ",")
+	if ok {
+		locale = key
+	}
 	return obj.send(preCtx, commend{
 		Method: "Emulation.setLocaleOverride",
 		Params: map[string]any{
-			"locale": locale,
+			"locale": strings.ReplaceAll(locale, "-", "_"),
 		},
 	})
 }

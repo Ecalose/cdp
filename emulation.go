@@ -19,10 +19,14 @@ type Viewport struct {
 }
 type Device struct {
 	UserAgent         string   `json:"user_agent"`
-	Viewport          Viewport `json:"viewport"`
-	DeviceScaleFactor float64  `json:"device_scale_factor"`
+	Viewport          Viewport `json:"viewport"`            //浏览器宽度和高度
+	DeviceScaleFactor float64  `json:"device_scale_factor"` //1 → 普通屏，2 → Retina，3 → 高密度手机屏
 	IsMobile          bool     `json:"is_mobile"`
 	HasTouch          bool     `json:"has_touch"`
+	ScreenWidth       int      `json:"screenWidth,omitempty"`  //显示器宽度
+	ScreenHeight      int      `json:"screenHeight,omitempty"` //显示器高度
+	PositionX         int      `json:"positionX,omitempty"`    //浏览器在屏幕上的位置
+	PositionY         int      `json:"positionY,omitempty"`    //浏览器在屏幕上的位置
 }
 
 // 设置屏幕显示
@@ -34,16 +38,7 @@ func (obj *WebSock) EmulationSetDeviceMetricsOverride(preCtx context.Context, de
 			"height":            device.Viewport.Height,
 			"deviceScaleFactor": device.DeviceScaleFactor,
 			"mobile":            device.IsMobile,
-		},
-	})
-}
-
-// 设置是否支持触摸
-func (obj *WebSock) EmulationSetTouchEmulationEnabled(preCtx context.Context, hasTouch bool) (RecvData, error) {
-	return obj.send(preCtx, commend{
-		Method: "Emulation.setTouchEmulationEnabled",
-		Params: map[string]any{
-			"enabled": hasTouch,
+			"has_touch":         device.HasTouch,
 		},
 	})
 }
@@ -55,7 +50,7 @@ func (obj *WebSock) EmulationSetGeolocationOverride(preCtx context.Context, lati
 		Params: map[string]any{
 			"latitude":  latitude,
 			"longitude": longitude,
-			"accuracy":  100,
+			"accuracy":  100, //float,100-2000。 定位精度 5	高精度 GPS，20	正常手机，100	WiFi 定位，1000	粗略 IP 定位
 		},
 	})
 }
@@ -66,16 +61,6 @@ func (obj *WebSock) EmulationSetHardwareConcurrencyOverride(preCtx context.Conte
 		Method: "Emulation.setHardwareConcurrencyOverride",
 		Params: map[string]any{
 			"hardwareConcurrency": hardwareConcurrency,
-		},
-	})
-}
-
-// 允许覆盖自动化标志
-func (obj *WebSock) EmulationSetAutomationOverride(preCtx context.Context, enabled bool) (RecvData, error) {
-	return obj.send(preCtx, commend{
-		Method: "Emulation.setAutomationOverride",
-		Params: map[string]any{
-			"enabled": enabled,
 		},
 	})
 }
@@ -104,33 +89,43 @@ func (obj *WebSock) EmulationSetTimezoneOverride(preCtx context.Context, timezon
 	})
 }
 
-// 是否应始终隐藏滚动条。
-func (obj *WebSock) EmulationSetScrollbarsHidden(preCtx context.Context, hidden bool) (RecvData, error) {
-	return obj.send(preCtx, commend{
-		Method: "Emulation.setScrollbarsHidden",
-		Params: map[string]any{
-			"hidden": hidden,
-		},
-	})
-}
-
-// 设置指定的页面比例因子
-func (obj *WebSock) EmulationSetPageScaleFactor(preCtx context.Context, pageScaleFactor float64) (RecvData, error) {
-	return obj.send(preCtx, commend{
-		Method: "Emulation.setPageScaleFactor",
-		Params: map[string]any{
-			"pageScaleFactor": pageScaleFactor,
-		},
-	})
-}
-
-// 设置空闲状态
-func (obj *WebSock) EmulationSetIdleOverride(preCtx context.Context, isUserActive, isScreenUnlocked bool) (RecvData, error) {
+// 设置页面空闲状态
+func (obj *WebSock) EmulationSetActive(preCtx context.Context) (RecvData, error) {
 	return obj.send(preCtx, commend{
 		Method: "Emulation.setIdleOverride",
 		Params: map[string]any{
-			"isUserActive":     isUserActive,     //用户是否活动
-			"isScreenUnlocked": isScreenUnlocked, //屏幕是否上锁
+			"isUserActive":     true,  //用户是否活动
+			"isScreenUnlocked": false, //屏幕是否上锁
+		},
+	})
+}
+
+// 设置cpu频率
+func (obj *WebSock) EmulationSetCPUThrottlingRate(preCtx context.Context, rate float64) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Emulation.setCPUThrottlingRate",
+		Params: map[string]any{
+			"rate": rate, //cpu 频率降低倍数，1 不降低，2，降低2倍
+		},
+	})
+}
+
+// 设置字体缩放比例
+func (obj *WebSock) EmulationSetEmulatedOSTextScale(preCtx context.Context, scale float64) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Emulation.setEmulatedOSTextScale",
+		Params: map[string]any{
+			"scale": scale, //字体缩放比例 0.9-1.1
+		},
+	})
+}
+
+// 处于焦点并激活页面
+func (obj *WebSock) EmulationSetFocusEmulationEnabled(preCtx context.Context) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Emulation.setFocusEmulationEnabled",
+		Params: map[string]any{
+			"enabled": true,
 		},
 	})
 }

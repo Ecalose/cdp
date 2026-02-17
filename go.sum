@@ -8,8 +8,8 @@ github.com/andybalholm/cascadia v1.3.3 h1:AG2YHrzJIm4BZ19iwJ/DAua6Btl3IwJX+VI4kk
 github.com/andybalholm/cascadia v1.3.3/go.mod h1:xNd9bqTn98Ln4DwST8/nG+H0yuB8Hmgu1YHNnWw0GeA=
 github.com/caddyserver/certmagic v0.25.1 h1:4sIKKbOt5pg6+sL7tEwymE1x2bj6CHr80da1CRRIPbY=
 github.com/caddyserver/certmagic v0.25.1/go.mod h1:VhyvndxtVton/Fo/wKhRoC46Rbw1fmjvQ3GjHYSQTEY=
-github.com/caddyserver/zerossl v0.1.4 h1:CVJOE3MZeFisCERZjkxIcsqIH4fnFdlYWnPYeFtBHRw=
-github.com/caddyserver/zerossl v0.1.4/go.mod h1:CxA0acn7oEGO6//4rtrRjYgEoa4MFw/XofZnrYwGqG4=
+github.com/caddyserver/zerossl v0.1.5 h1:dkvOjBAEEtY6LIGAHei7sw2UgqSD6TrWweXpV7lvEvE=
+github.com/caddyserver/zerossl v0.1.5/go.mod h1:CxA0acn7oEGO6//4rtrRjYgEoa4MFw/XofZnrYwGqG4=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=
@@ -72,8 +72,8 @@ github.com/gospider007/netx v0.0.0-20260215151612-cec96655ec10 h1:hdqXXqxnoaQl6c
 github.com/gospider007/netx v0.0.0-20260215151612-cec96655ec10/go.mod h1:OI6ukpOi+NqtkUIb6KTDt/6uvtij/JksTODaslsPEOc=
 github.com/gospider007/re v0.0.0-20251212071142-f56bce921150 h1:xkr9UHkqO5c+VmmsoSzBTjufvqQxMSMk9c1aN49zfN8=
 github.com/gospider007/re v0.0.0-20251212071142-f56bce921150/go.mod h1:5fVj9OYkqlOgBdz+kH4jgdiSZ6jdfbmexLIFqtMa9v8=
-github.com/gospider007/requests v0.0.0-20260215151608-26a159f61160 h1:WH1IeLTSGoGYKWX7Ye8cVSHJQ1Z3EVtvrTRmZzZeuVI=
-github.com/gospider007/requests v0.0.0-20260215151608-26a159f61160/go.mod h1:aiaq/e6YOvea1SNIWXw0LzNr9kVMM6VF3FHtIrdscCU=
+github.com/gospider007/requests v0.0.0-20260215152254-fe782145b885 h1:78OB2eUoKU94Cbh6qvalztOs92AogE4EmNKlVy3MFws=
+github.com/gospider007/requests v0.0.0-20260215152254-fe782145b885/go.mod h1:lrOinlfK2VH1pBlvPDur7+hj5sqf6ZfQfV5tp77BLW0=
 github.com/gospider007/tools v0.0.0-20260211061019-053e0e2f25af h1:PHfbomkJGWw5OeAdAkr+k5w8i4ZtbdhV847LU6ZY5ck=
 github.com/gospider007/tools v0.0.0-20260211061019-053e0e2f25af/go.mod h1:SHK4nzSxofhKPyjA3SpQdbTVvHFL8Xd8KZDgFUW4Bmc=
 github.com/gospider007/websocket v0.0.0-20260211061234-19cfb38637e0 h1:CcXl9e6KP7HlPAQOz+l2FPtKMNFcXvIMSoSFnlo2pxk=

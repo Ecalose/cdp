@@ -6,7 +6,7 @@ require (
 	github.com/gospider007/gson v0.0.0-20260211061115-d2749fe6a54b
 	github.com/gospider007/netx v0.0.0-20260215151612-cec96655ec10
 	github.com/gospider007/re v0.0.0-20251212071142-f56bce921150
-	github.com/gospider007/requests v0.0.0-20260215151608-26a159f61160
+	github.com/gospider007/requests v0.0.0-20260215152254-fe782145b885
 	github.com/gospider007/tools v0.0.0-20260211061019-053e0e2f25af
 	github.com/gospider007/websocket v0.0.0-20260211061234-19cfb38637e0
 )
@@ -17,7 +17,7 @@ require (
 	github.com/andybalholm/brotli v1.2.0 // indirect
 	github.com/andybalholm/cascadia v1.3.3 // indirect
 	github.com/caddyserver/certmagic v0.25.1 // indirect
-	github.com/caddyserver/zerossl v0.1.4 // indirect
+	github.com/caddyserver/zerossl v0.1.5 // indirect
 	github.com/gaukas/clienthellod v0.4.2 // indirect
 	github.com/gaukas/godicttls v0.0.4 // indirect
 	github.com/go-task/slim-sprig/v3 v3.0.0 // indirect

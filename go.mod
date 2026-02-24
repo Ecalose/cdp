@@ -4,11 +4,11 @@ go 1.26.0
 
 require (
 	github.com/gospider007/gson v0.0.0-20260224011423-8f7f8b94f695
-	github.com/gospider007/netx v0.0.0-20260224011242-06029dfdb85b
+	github.com/gospider007/netx v0.0.0-20260224011918-c54749d88bde
 	github.com/gospider007/re v0.0.0-20251212071142-f56bce921150
-	github.com/gospider007/requests v0.0.0-20260224011239-6dfd4a0abf3e
+	github.com/gospider007/requests v0.0.0-20260224011915-2a7ee60da4c0
 	github.com/gospider007/tools v0.0.0-20260224011237-7797dedbca5f
-	github.com/gospider007/websocket v0.0.0-20260224011427-4b0dc4e31940
+	github.com/gospider007/websocket v0.0.0-20260224011918-c0fd6a141ab2
 )
 
 require (
@@ -29,13 +29,13 @@ require (
 	github.com/google/pprof v0.0.0-20260202012954-cb029daf43ef // indirect
 	github.com/gospider007/bar v0.0.0-20260211061016-83e11c93b20c // indirect
 	github.com/gospider007/blog v0.0.0-20260211060835-ce5fbca77b83 // indirect
-	github.com/gospider007/bs4 v0.0.0-20260211061114-0347ed215470 // indirect
+	github.com/gospider007/bs4 v0.0.0-20260224011913-523a3ddc32a4 // indirect
 	github.com/gospider007/conf v0.0.0-20260224011420-f2178acdf718 // indirect
-	github.com/gospider007/gtls v0.0.0-20260224011425-a4ec4d4fdcf8 // indirect
-	github.com/gospider007/http1 v0.0.0-20260215151306-3ab62be2477c // indirect
-	github.com/gospider007/http2 v0.0.0-20260224011241-cd2d48361a96 // indirect
-	github.com/gospider007/http3 v0.0.0-20260224011242-8dfb9b90e9a8 // indirect
-	github.com/gospider007/ja3 v0.0.0-20260224011238-05e8f8be8092 // indirect
+	github.com/gospider007/gtls v0.0.0-20260224011951-e85a93e87fb3 // indirect
+	github.com/gospider007/http1 v0.0.0-20260224011919-c6df8b5cc6fd // indirect
+	github.com/gospider007/http2 v0.0.0-20260224012004-85d1c6a47923 // indirect
+	github.com/gospider007/http3 v0.0.0-20260224012004-70db550e3f48 // indirect
+	github.com/gospider007/ja3 v0.0.0-20260224011915-d3394dea45d0 // indirect
 	github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.18.4 // indirect

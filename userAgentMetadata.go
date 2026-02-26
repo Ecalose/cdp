@@ -1,65 +1,58 @@
 package cdp
 
-var userAgentMetadata = map[string]any{
-	"brands": []map[string]string{
-		{
-			"brand":   "Google Chrome",
-			"version": "143",
-		},
-		{
-			"brand":   "Chromium",
-			"version": "143",
-		},
-		{
-			"brand":   "Not A(Brand",
-			"version": "24",
-		},
-	},
-	"fullVersionList": []map[string]string{
-		{
-			"brand":   "Google Chrome",
-			"version": "143.0.7499.193",
-		},
-		{
-			"brand":   "Chromium",
-			"version": "143.0.7499.193",
-		},
-		{
-			"brand":   "Not A(Brand",
-			"version": "24.0.0.0",
-		},
-	},
-	"platform":        "macOS",
-	"platformVersion": "26.1.0",
-	"architecture":    "arm",
-	"bitness":         "64",
-	"uaFullVersion":   "143.0.7499.193",
-	"model":           "",
-	"mobile":          false,
-	"wow64":           false,
-	"formFactors":     []string{"Desktop"},
-}
+import (
+	"fmt"
+	"strconv"
+)
 
-// await navigator.userAgentData.getHighEntropyValues([
-//
-//	'brands',
-//	'fullVersionList',
-//	'platform',
-//	'platformVersion',
-//	'architecture',
-//	'bitness',
-//	'uaFullVersion',
-//	'model',
-//	'mobile',
-//	'wow64',
-//	'formFactors',
-//
-// ]);
-func autoBuildUAParams(userAgent string, acceptLanguage string) map[string]any {
+func getUserAgentMetadata(major int, fullVersion, osVersion string) map[string]any {
+	majorStr := strconv.Itoa(major)
+	versioin := fmt.Sprintf("%d.%s", major, fullVersion)
+	return map[string]any{
+		"brands": []map[string]string{
+			{
+				"brand":   "Google Chrome",
+				"version": majorStr,
+			},
+			{
+				"brand":   "Chromium",
+				"version": majorStr,
+			},
+			{
+				"brand":   "Not A(Brand",
+				"version": "24",
+			},
+		},
+		"fullVersionList": []map[string]string{
+			{
+				"brand":   "Google Chrome",
+				"version": versioin,
+			},
+			{
+				"brand":   "Chromium",
+				"version": versioin,
+			},
+			{
+				"brand":   "Not A(Brand",
+				"version": "24.0.0.0",
+			},
+		},
+		"platform":        "macOS",
+		"platformVersion": osVersion,
+		"architecture":    "arm",
+		"bitness":         "64",
+		"uaFullVersion":   versioin,
+		"model":           "",
+		"mobile":          false,
+		"wow64":           false,
+		"formFactors":     []string{"Desktop"},
+	}
+}
+func autoBuildUAParams(userAgent string, major int, acceptLanguage string, fullVersion string, osVersion string) map[string]any {
 	params := map[string]any{
 		"userAgent":         userAgent,
 		"platform":          "MacIntel",
-		"userAgentMetadata": userAgentMetadata,
+		"userAgentMetadata": getUserAgentMetadata(major, fullVersion, osVersion),
 	}
 	if acceptLanguage != "" {
 		params["acceptLanguage"] = acceptLanguage

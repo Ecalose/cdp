@@ -6,10 +6,10 @@ import (
 )
 
 // 设置userAgent
-func (obj *WebSock) EmulationSetUserAgentOverride(preCtx context.Context, userAgent string, acceptLanguage string) (RecvData, error) {
+func (obj *WebSock) EmulationSetUserAgentOverride(preCtx context.Context, userAgent string, major int, acceptLanguage string, fullVersion string, osVersion string) (RecvData, error) {
 	return obj.send(preCtx, commend{
 		Method: "Emulation.setUserAgentOverride",
-		Params: autoBuildUAParams(userAgent, acceptLanguage),
+		Params: autoBuildUAParams(userAgent, major, acceptLanguage, fullVersion, osVersion),
 	})
 }
 
@@ -28,6 +28,29 @@ type Device struct {
 	PositionX         int      `json:"positionX,omitempty"`    //浏览器在屏幕上的位置
 	PositionY         int      `json:"positionY,omitempty"`    //浏览器在屏幕上的位置
 }
+type Screen struct {
+	Width             int `json:"width"`
+	Height            int `json:"height"`
+	DeviceScaleFactor int `json:"device_scale_factor"`    //1 → 普通屏，2 → Retina，3 → 高密度手机屏
+	ScreenWidth       int `json:"screenWidth,omitempty"`  //显示器宽度
+	ScreenHeight      int `json:"screenHeight,omitempty"` //显示器高度
+	PositionX         int `json:"positionX,omitempty"`    //浏览器在屏幕上的位置
+	PositionY         int `json:"positionY,omitempty"`    //浏览器在屏幕上的位置
+}
+
+// 设置屏幕显示
+func (obj *WebSock) EmulationSetScreenOverride(preCtx context.Context, device Screen) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Emulation.setDeviceMetricsOverride",
+		Params: map[string]any{
+			"width":             device.Width,
+			"height":            device.Height,
+			"deviceScaleFactor": device.DeviceScaleFactor,
+			"mobile":            false,
+			"has_touch":         false,
+		},
+	})
+}
 
 // 设置屏幕显示
 func (obj *WebSock) EmulationSetDeviceMetricsOverride(preCtx context.Context, device Device) (RecvData, error) {
@@ -44,13 +67,13 @@ func (obj *WebSock) EmulationSetDeviceMetricsOverride(preCtx context.Context, de
 }
 
 // 设置地理位置
-func (obj *WebSock) EmulationSetGeolocationOverride(preCtx context.Context, latitude, longitude float64) (RecvData, error) {
+func (obj *WebSock) EmulationSetGeolocationOverride(preCtx context.Context, latitude, longitude float64, accuracy int) (RecvData, error) {
 	return obj.send(preCtx, commend{
 		Method: "Emulation.setGeolocationOverride",
 		Params: map[string]any{
 			"latitude":  latitude,
 			"longitude": longitude,
-			"accuracy":  100, //float,100-2000。 定位精度 5	高精度 GPS，20	正常手机，100	WiFi 定位，1000	粗略 IP 定位
+			"accuracy":  accuracy, //float,100-2000。 定位精度 5	高精度 GPS，20	正常手机，100	WiFi 定位，1000	粗略 IP 定位
 		},
 	})
 }

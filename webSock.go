@@ -57,7 +57,6 @@ func (obj *WebSock) Context() context.Context {
 }
 
 func (obj *WebSock) recv(ctx context.Context, rd RecvData) error {
-	defer recover()
 	cmdDataAny, ok := obj.ids.LoadAndDelete(rd.Id)
 	if ok {
 		cmdData := cmdDataAny.(chan RecvData)
@@ -161,14 +160,14 @@ func (obj *WebSock) Error() error {
 	return obj.err
 }
 
-func (obj *WebSock) regId(id int64) (chan RecvData, error) {
-	_, ok := obj.ids.Load(id)
-	if ok {
-		return nil, errors.New("id already exists")
-	}
+func (obj *WebSock) setID() (int64, chan RecvData) {
+	cid := obj.id.Add(1)
 	data := make(chan RecvData, 1)
-	obj.ids.Store(id, data)
-	return data, nil
+	obj.ids.Store(cid, data)
+	return cid, data
+}
+func (obj *WebSock) delID(cid int64) {
+	obj.ids.Delete(cid)
 }
 func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) {
 	var cnl context.CancelFunc
@@ -179,11 +178,9 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 		ctx, cnl = context.WithTimeout(preCtx, time.Second*60)
 	}
 	defer cnl()
-	cmd.Id = obj.id.Add(1)
-	idEvent, err := obj.regId(cmd.Id)
-	if err != nil {
-		return RecvData{}, err
-	}
+	cid, idEvent := obj.setID()
+	defer obj.delID(cid)
+	cmd.Id = cid
 	if err := obj.conn.WriteMessage(websocket.TextMessage, cmd); err != nil {
 		obj.CloseWithError(err)
 		return RecvData{}, err

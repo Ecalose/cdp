@@ -3,10 +3,10 @@ module github.com/gospider007/cdp
 go 1.26.0
 
 require (
-	github.com/gospider007/gson v0.0.0-20260227072317-908b3d99a55c
-	github.com/gospider007/netx v0.0.0-20260227072447-1efa1c06aa3f
+	github.com/gospider007/gson v0.0.0-20260227072532-00826c662d4b
+	github.com/gospider007/netx v0.0.0-20260227072511-3eec86a7b033
 	github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab
-	github.com/gospider007/requests v0.0.0-20260227072437-7c986574376f
+	github.com/gospider007/requests v0.0.0-20260227072613-94c90804f16c
 	github.com/gospider007/tools v0.0.0-20260227072349-e468cb98f78b
 	github.com/gospider007/websocket v0.0.0-20260227072427-ddb92f20c166
 )

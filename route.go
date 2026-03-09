@@ -215,10 +215,10 @@ func (obj *Route) request(ctx context.Context, enableBandwidthStats bool, routeO
 	fulData.Headers = rs.Headers()
 	fulData.ResponsePhrase = rs.Status()
 	if rs.WebSocket() != nil {
-		rs.WebSocket().Close()
+		rs.CloseConn()
 	}
 	if rs.SSE() != nil {
-		rs.SSE().Close()
+		rs.CloseConn()
 	}
 	return
 }

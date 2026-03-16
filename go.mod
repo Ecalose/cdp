@@ -6,7 +6,7 @@ require (
 	github.com/gospider007/gson v0.0.0-20260312032453-c0586fa3915c
 	github.com/gospider007/netx v0.0.0-20260313070317-431a8982f16d
 	github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab
-	github.com/gospider007/requests v0.0.0-20260313070417-75816ccd735f
+	github.com/gospider007/requests v0.0.0-20260316032744-270889f303fc
 	github.com/gospider007/tools v0.0.0-20260312032233-dcd42802e7e0
 	github.com/gospider007/websocket v0.0.0-20260312032604-eb47766f740d
 )
@@ -29,7 +29,7 @@ require (
 	github.com/google/pprof v0.0.0-20260302011040-a15ffb7f9dcc // indirect
 	github.com/gospider007/bar v0.0.0-20260211061016-83e11c93b20c // indirect
 	github.com/gospider007/blog v0.0.0-20260211060835-ce5fbca77b83 // indirect
-	github.com/gospider007/bs4 v0.0.0-20260312032453-4055092c24a4 // indirect
+	github.com/gospider007/bs4 v0.0.0-20260316032739-5015bc43a0ee // indirect
 	github.com/gospider007/conf v0.0.0-20260312032451-093bb31ec043 // indirect
 	github.com/gospider007/gtls v0.0.0-20260313063857-3fa8b0eff7a8 // indirect
 	github.com/gospider007/http1 v0.0.0-20260312032453-4488e7d307ec // indirect

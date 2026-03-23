@@ -3,12 +3,12 @@ module github.com/gospider007/cdp
 go 1.26.0
 
 require (
-	github.com/gospider007/gson v0.0.0-20260312032453-c0586fa3915c
+	github.com/gospider007/gson v0.0.0-20260323150146-de57f2199baf
 	github.com/gospider007/netx v0.0.0-20260318014810-5965ee791978
 	github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab
-	github.com/gospider007/requests v0.0.0-20260318014859-630ba94a32d4
+	github.com/gospider007/requests v0.0.0-20260323150142-03f647bac5f8
 	github.com/gospider007/tools v0.0.0-20260312032233-dcd42802e7e0
-	github.com/gospider007/websocket v0.0.0-20260312032604-eb47766f740d
+	github.com/gospider007/websocket v0.0.0-20260323150143-ff582e72f31b
 )
 
 require (
@@ -29,17 +29,17 @@ require (
 	github.com/google/pprof v0.0.0-20260302011040-a15ffb7f9dcc // indirect
 	github.com/gospider007/bar v0.0.0-20260211061016-83e11c93b20c // indirect
 	github.com/gospider007/blog v0.0.0-20260211060835-ce5fbca77b83 // indirect
-	github.com/gospider007/bs4 v0.0.0-20260316032739-5015bc43a0ee // indirect
-	github.com/gospider007/conf v0.0.0-20260312032451-093bb31ec043 // indirect
-	github.com/gospider007/gtls v0.0.0-20260318014708-180dc2d336c0 // indirect
-	github.com/gospider007/http1 v0.0.0-20260312032453-4488e7d307ec // indirect
+	github.com/gospider007/bs4 v0.0.0-20260323150145-762bcab1a41d // indirect
+	github.com/gospider007/conf v0.0.0-20260323150136-856f32a66956 // indirect
+	github.com/gospider007/gtls v0.0.0-20260323150154-93aad1edd502 // indirect
+	github.com/gospider007/http1 v0.0.0-20260323150147-a700fd2ba7ee // indirect
 	github.com/gospider007/http2 v0.0.0-20260318014708-f7c4218c9661 // indirect
-	github.com/gospider007/http3 v0.0.0-20260313063804-c44b232593ad // indirect
-	github.com/gospider007/ja3 v0.0.0-20260318014537-e1f9ace9a7bb // indirect
+	github.com/gospider007/http3 v0.0.0-20260323150149-dbd6ae863b08 // indirect
+	github.com/gospider007/ja3 v0.0.0-20260323150136-3fb14ae8125e // indirect
 	github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8 // indirect
 	github.com/hashicorp/golang-lru/v2 v2.0.7 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
-	github.com/klauspost/compress v1.18.4 // indirect
+	github.com/klauspost/compress v1.18.5 // indirect
 	github.com/klauspost/cpuid/v2 v2.3.0 // indirect
 	github.com/libdns/libdns v1.1.1 // indirect
 	github.com/mholt/acmez/v3 v3.1.6 // indirect

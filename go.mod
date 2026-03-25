@@ -7,7 +7,7 @@ require (
 	github.com/gospider007/netx v0.0.0-20260324001858-499557ac7d89
 	github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab
 	github.com/gospider007/requests v0.0.0-20260324001940-ff8d4272246e
-	github.com/gospider007/tools v0.0.0-20260324001556-1c93ad227dc2
+	github.com/gospider007/tools v0.0.0-20260325133935-c4624d4fcae4
 	github.com/gospider007/websocket v0.0.0-20260324001816-35a5f3315cdc
 )
 

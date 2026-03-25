@@ -78,8 +78,8 @@ github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab h1:LEp9NN4EMV9GuTWn
 github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab/go.mod h1:xYLm4YDIRVrfBHbWrVuXzsq8F5JeMjWrZQxApYOXcg4=
 github.com/gospider007/requests v0.0.0-20260324001940-ff8d4272246e h1:y0ON/7CSn2aDo8sF3CjX56EWoDD0NMR2DKhCT93Hkuk=
 github.com/gospider007/requests v0.0.0-20260324001940-ff8d4272246e/go.mod h1:baEi2p4FAW+386ii6PIaZCbx3ieG1FCW61d5S500ny4=
-github.com/gospider007/tools v0.0.0-20260324001556-1c93ad227dc2 h1:FrpWScEp0lZQxx5yo6hH0Is9ptkqJPK50sS7kASvC8w=
-github.com/gospider007/tools v0.0.0-20260324001556-1c93ad227dc2/go.mod h1:07mS9SZiyRaJmUYL1Hrr9KFZlsdtTPKpO3IfEAOaqFw=
+github.com/gospider007/tools v0.0.0-20260325133935-c4624d4fcae4 h1:npEq2JSH6X6TmudQtCRJx2JJZxf6Wt97MKwnWo9YRms=
+github.com/gospider007/tools v0.0.0-20260325133935-c4624d4fcae4/go.mod h1:07mS9SZiyRaJmUYL1Hrr9KFZlsdtTPKpO3IfEAOaqFw=
 github.com/gospider007/websocket v0.0.0-20260324001816-35a5f3315cdc h1:PvqqUNcRgMei2/Qwr4OmEKPJwaLqrxmay6Txf3SnB2g=
 github.com/gospider007/websocket v0.0.0-20260324001816-35a5f3315cdc/go.mod h1:ZpInonfehzzLhHGWOPI0aEXneIuYGPwW+jRS/OwAiYM=
 github.com/hashicorp/golang-lru/v2 v2.0.7 h1:a+bsQ5rvGLjzHuww6tVxozPZFVghXaHOwFs4luLUK2k=

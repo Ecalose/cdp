@@ -65,6 +65,7 @@ func (obj *WebSock) TargetCreateBrowserContext(ctx context.Context, proxyServer 
 	}
 	if proxyServer != "" {
 		params["proxyServer"] = proxyServer
+		params["proxyBypassList"] = "<-loopback>"
 	}
 	return obj.send(ctx, commend{
 		Method: "Target.createBrowserContext",

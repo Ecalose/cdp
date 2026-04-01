@@ -4,8 +4,8 @@ github.com/Masterminds/semver/v3 v3.4.0 h1:Zog+i5UMtVoCU8oKka5P7i9q9HgrJeGzI9SA1
 github.com/Masterminds/semver/v3 v3.4.0/go.mod h1:4V+yj/TJE1HU9XfppCwVMZq3I84lprf4nC11bSS5beM=
 github.com/PuerkitoBio/goquery v1.12.0 h1:pAcL4g3WRXekcB9AU/y1mbKez2dbY2AajVhtkO8RIBo=
 github.com/PuerkitoBio/goquery v1.12.0/go.mod h1:802ej+gV2y7bbIhOIoPY5sT183ZW0YFofScC4q/hIpQ=
-github.com/andybalholm/brotli v1.2.0 h1:ukwgCxwYrmACq68yiUqwIWnGY0cTPox/M94sVwToPjQ=
-github.com/andybalholm/brotli v1.2.0/go.mod h1:rzTDkvFWvIrjDXZHkuS16NPggd91W3kUSvPlQ1pLaKY=
+github.com/andybalholm/brotli v1.2.1 h1:R+f5xP285VArJDRgowrfb9DqL18yVK0gKAW/F+eTWro=
+github.com/andybalholm/brotli v1.2.1/go.mod h1:rzTDkvFWvIrjDXZHkuS16NPggd91W3kUSvPlQ1pLaKY=
 github.com/andybalholm/cascadia v1.3.3 h1:AG2YHrzJIm4BZ19iwJ/DAua6Btl3IwJX+VI4kktS1LM=
 github.com/andybalholm/cascadia v1.3.3/go.mod h1:xNd9bqTn98Ln4DwST8/nG+H0yuB8Hmgu1YHNnWw0GeA=
 github.com/caddyserver/certmagic v0.25.2 h1:D7xcS7ggX/WEY54x0czj7ioTkmDWKIgxtIi2OcQclUc=
@@ -56,8 +56,8 @@ github.com/gospider007/blog v0.0.0-20260211060835-ce5fbca77b83 h1:UuQSlgP3zYnSmg
 github.com/gospider007/blog v0.0.0-20260211060835-ce5fbca77b83/go.mod h1:n4Ht01FpVgQtaOpToh2EDosiBzbCeO58R/KCFAEEwuc=
 github.com/gospider007/bs4 v0.0.0-20260325134202-18c6bf6be84a h1:XnSEdJww54tSbr3wKwc8XJI8IuVl62cEoCycgV1xls0=
 github.com/gospider007/bs4 v0.0.0-20260325134202-18c6bf6be84a/go.mod h1:W3lbxWBpNRrkB6dmIaF3Ef7/iqJQnCwxKp7clpxzJUo=
-github.com/gospider007/conf v0.0.0-20260325134158-28d4f1de442d h1:8YyHniwee/HXZDPmfd2PC220mMFn+Zx2Kj9Vz0pWqwY=
-github.com/gospider007/conf v0.0.0-20260325134158-28d4f1de442d/go.mod h1:F+yjQVXHB/yizqWZTme9Eeh/FS4qznsmVqVZodXHlUs=
+github.com/gospider007/conf v0.0.0-20260401032751-8e753e0bdb9f h1:ShKVS0/vzCj3M9AOY0/b5OYNUw0jCQlHMmd8aDvWiqw=
+github.com/gospider007/conf v0.0.0-20260401032751-8e753e0bdb9f/go.mod h1:ZoR2X5wV2fUFxfO3MaQHAgAViMsPbt/gKW+XfhNWNqU=
 github.com/gospider007/gson v0.0.0-20260325134220-8f57a989a95d h1:xCBNq99NKxWxCkM9cNDOCzpZSpA5AQ5CBd2Am8u9c+8=
 github.com/gospider007/gson v0.0.0-20260325134220-8f57a989a95d/go.mod h1:za81Vy8rAnMXlUs5cL2D0ImcVg1/IVQeBwEwfSVU3wk=
 github.com/gospider007/gtls v0.0.0-20260325134319-f76cb2085fbd h1:DmKcrgb38qz5n7P38arzZmws5HFXfgea04BImKuT5RE=

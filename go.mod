@@ -14,7 +14,7 @@ require (
 require (
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
 	github.com/PuerkitoBio/goquery v1.12.0 // indirect
-	github.com/andybalholm/brotli v1.2.0 // indirect
+	github.com/andybalholm/brotli v1.2.1 // indirect
 	github.com/andybalholm/cascadia v1.3.3 // indirect
 	github.com/caddyserver/certmagic v0.25.2 // indirect
 	github.com/caddyserver/zerossl v0.1.5 // indirect
@@ -30,7 +30,7 @@ require (
 	github.com/gospider007/bar v0.0.0-20260211061016-83e11c93b20c // indirect
 	github.com/gospider007/blog v0.0.0-20260211060835-ce5fbca77b83 // indirect
 	github.com/gospider007/bs4 v0.0.0-20260325134202-18c6bf6be84a // indirect
-	github.com/gospider007/conf v0.0.0-20260325134158-28d4f1de442d // indirect
+	github.com/gospider007/conf v0.0.0-20260401032751-8e753e0bdb9f // indirect
 	github.com/gospider007/gtls v0.0.0-20260325134319-f76cb2085fbd // indirect
 	github.com/gospider007/http1 v0.0.0-20260325134235-ac612700ab7c // indirect
 	github.com/gospider007/http2 v0.0.0-20260325134325-e386b463232b // indirect

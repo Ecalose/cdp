@@ -72,12 +72,12 @@ github.com/gospider007/ja3 v0.0.0-20260402073746-eed43868a73e h1:HKVBLUTAvnrTyzn
 github.com/gospider007/ja3 v0.0.0-20260402073746-eed43868a73e/go.mod h1:6ALiknte8SCGQ7iiaJM5HsS4D5Sdrf2T+fQUh47n+j4=
 github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8 h1:EivYaFLOylV33Q5aRkF/cwkisOkDVDWLJ5CXfHYz5mU=
 github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8/go.mod h1:+DxImhsKjwFWM5qTeuWSsh6q6Rax+H0fN3QcuoJZos8=
-github.com/gospider007/netx v0.0.0-20260402073911-68ccbed926ea h1:oKOsPauqotaVVUKqGAPxKrqlf1toxlucqX2PL2NHc04=
-github.com/gospider007/netx v0.0.0-20260402073911-68ccbed926ea/go.mod h1:RLctBa1TYH+4SJZGSDUNuU7p5jaSi8Ff1DLPvI3Ag7A=
+github.com/gospider007/netx v0.0.0-20260402074103-f11bb548db11 h1:xThEIKD9GCxE8Go0ocqoaoBHQNw4+ceOH6PV//brVrM=
+github.com/gospider007/netx v0.0.0-20260402074103-f11bb548db11/go.mod h1:1hSOBJ9ClUKmXSG9aAS4H+Kpgj3ZxxZoaDeM5M+eEKI=
 github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab h1:LEp9NN4EMV9GuTWnXRN4eiiUAjpCEq2Z4HpVgTQx0JY=
 github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab/go.mod h1:xYLm4YDIRVrfBHbWrVuXzsq8F5JeMjWrZQxApYOXcg4=
-github.com/gospider007/requests v0.0.0-20260402073917-666aad075090 h1:SWJOWiMFEZuJUxH6vL2TvfrZk3Cnv/jhVc81hcRqSWQ=
-github.com/gospider007/requests v0.0.0-20260402073917-666aad075090/go.mod h1:vV0k0KABDX/hiO69az0wV2/7Imv71YK5S+daQcxYoJ4=
+github.com/gospider007/requests v0.0.0-20260402074218-255ca83ef5e8 h1:CR6jxSiNJYfoP8X2ZFrqyjC8xjBW2e3v0z7UXEAizls=
+github.com/gospider007/requests v0.0.0-20260402074218-255ca83ef5e8/go.mod h1:w7jdB+cW+QLtY5JaKv1V0se2gWy7IHYEKEA4BEuIvDg=
 github.com/gospider007/tools v0.0.0-20260401032753-91bed94c555c h1:1CJYXeIMb9TAkCXP2nXkO664Z3JrBAiiQCN8Gtl9uXI=
 github.com/gospider007/tools v0.0.0-20260401032753-91bed94c555c/go.mod h1:YEzg0fCuKR/Mo7lAgeZNPF347cIs/AmlT1/RJ3+jwOc=
 github.com/gospider007/websocket v0.0.0-20260401033204-3fef12f99bde h1:fn6JHBEioCrXGc6r0H+VZo+f6Wn2FPIWjEjx0nP0sjQ=

@@ -2,15 +2,27 @@ package cdp
 
 import "context"
 
-func (obj *WebSock) StorageClear(preCtx context.Context, href string) (RecvData, error) {
+func (obj *WebSock) StorageClearDataForStorageKey(preCtx context.Context, storageKey string) (RecvData, error) {
 	return obj.send(preCtx, commend{
-		Method: "Storage.clearDataForOrigin",
+		Method: "Storage.clearDataForStorageKey",
 		Params: map[string]any{
-			"origin":       href,
+			"storageKey":   storageKey, //https://www.baidu.com/
 			"storageTypes": "all",
 		},
 	})
 }
+
+// Storage.clearDataForOrigin
+func (obj *WebSock) StorageClearDataForOrigin(preCtx context.Context, origin string) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Storage.clearDataForOrigin",
+		Params: map[string]any{
+			"origin":       origin, //https://www.baidu.com
+			"storageTypes": "all",
+		},
+	})
+}
+
 func (obj *WebSock) StorageEnable(preCtx context.Context, storageKey string) (RecvData, error) {
 	return obj.send(preCtx, commend{
 		Method: "Storage.setStorageBucketTracking",

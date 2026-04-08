@@ -91,6 +91,16 @@ func (obj *WebSock) NetworkClearBrowserCache(preCtx context.Context) (RecvData, 
 		Method: "Network.clearBrowserCache",
 	})
 }
+func (obj *WebSock) NetworkDeleteCookies(preCtx context.Context, name, domain, path string) (RecvData, error) {
+	return obj.send(preCtx, commend{
+		Method: "Network.deleteCookies",
+		Params: map[string]any{
+			"name":   name,
+			"domain": domain,
+			// "path":   path,
+		},
+	})
+}
 func (obj *WebSock) NetworkGetCookies(preCtx context.Context, urls ...string) (RecvData, error) {
 	return obj.send(preCtx, commend{
 		Method: "Network.getCookies",
@@ -99,6 +109,7 @@ func (obj *WebSock) NetworkGetCookies(preCtx context.Context, urls ...string) (R
 		},
 	})
 }
+
 func (obj *WebSock) NetworkSetCacheDisabled(preCtx context.Context, cacheDisabled bool) (RecvData, error) {
 	return obj.send(preCtx, commend{
 		Method: "Network.setCacheDisabled",

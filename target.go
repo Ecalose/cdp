@@ -88,3 +88,11 @@ func (obj *WebSock) TargetAttachToTarget(targetId string) (RecvData, error) {
 		},
 	})
 }
+func (obj *WebSock) TargetGetTargets(ctx context.Context, filters ...any) (RecvData, error) {
+	return obj.send(ctx, commend{
+		Method: "Target.getTargets",
+		Params: map[string]any{
+			"filter": filters,
+		},
+	})
+}

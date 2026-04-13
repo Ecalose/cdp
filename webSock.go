@@ -112,6 +112,9 @@ func (obj *WebSock) recvMain() (err error) {
 func (obj *WebSock) RequestsClient() *requests.Client {
 	return obj.reqCli
 }
+
+var ErrNewWs = errors.New("new websock error")
+
 func (obj *WebSock) newWs() error {
 	response, err := obj.reqCli.Request(obj.ctx, "get", obj.ws, requests.RequestOption{DisProxy: true})
 	if err != nil {
@@ -119,7 +122,7 @@ func (obj *WebSock) newWs() error {
 	}
 	conn := response.WebSocket()
 	if conn == nil {
-		return errors.New("new websock error")
+		return ErrNewWs
 	}
 	obj.conn = conn
 	return nil

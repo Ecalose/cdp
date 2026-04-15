@@ -119,3 +119,12 @@ func (obj *WebSock) PageSetDocumentContent(ctx context.Context, frameId string, 
 		},
 	})
 }
+
+func (obj *WebSock) PageSetBypassCSP(ctx context.Context, enabled bool) (RecvData, error) {
+	return obj.send(ctx, commend{
+		Method: "Page.setBypassCSP",
+		Params: map[string]any{
+			"enabled": enabled,
+		},
+	})
+}

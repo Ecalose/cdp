@@ -9,11 +9,14 @@ func (obj *WebSock) RuntimeEvaluate(ctx context.Context, expression string) (Rec
 		Method: "Runtime.evaluate",
 		Params: map[string]any{
 			// "disableBreaks":               true,       //执行期间禁用断点
-			"awaitPromise":                true,       //异步函数
+			"disableBreaks":               true,       //执行期间禁用断点
 			"expression":                  expression, //表达式
+			"awaitPromise":                true,       //异步函数
 			"returnByValue":               true,
+			"silent":                      true,
 			"allowUnsafeEvalBlockedByCSP": true,
-			"includeCommandLineAPI":       true,
+			// "includeCommandLineAPI":       true,
+			"includeCommandLineAPI": false,
 		},
 	})
 }

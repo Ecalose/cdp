@@ -8,15 +8,11 @@ import (
 	"github.com/gospider007/tools"
 )
 
-func (obj *WebSock) FetchRequestEnable(preCtx context.Context) (RecvData, error) {
+func (obj *WebSock) FetchRequestEnable(preCtx context.Context, patterns ...map[string]any) (RecvData, error) {
 	return obj.send(preCtx, commend{
 		Method: "Fetch.enable",
 		Params: map[string]any{
-			"patterns": []map[string]any{
-				{
-					"requestStage": "Request",
-				},
-			},
+			"patterns": patterns,
 		},
 	})
 }

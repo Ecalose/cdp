@@ -68,8 +68,8 @@ github.com/gospider007/http2 v0.0.0-20260429002939-b7c3c31f0516 h1:fP11xr0A8sVqX
 github.com/gospider007/http2 v0.0.0-20260429002939-b7c3c31f0516/go.mod h1:7/+w+SDKdWpVmDPX7SZtQ70SipyZnf3o39UZMZ+EUHE=
 github.com/gospider007/http3 v0.0.0-20260429002909-f1cdccd3d0ab h1:8q21Ig5GVtWAwIgoNLA1tdHEotm+XCj4sBLtgTYu+h4=
 github.com/gospider007/http3 v0.0.0-20260429002909-f1cdccd3d0ab/go.mod h1:WIlQ52UoEa1gQfQOqUubwL76iTC0koX77l4e1VpxiaA=
-github.com/gospider007/ja3 v0.0.0-20260429002909-16b8f92e41ef h1:2cBAsJKbVxPTMCuW+Gckcc5yY2RXsVaqnU0RIfPhTy8=
-github.com/gospider007/ja3 v0.0.0-20260429002909-16b8f92e41ef/go.mod h1:Iq9xhDmbGV46Z+Eq0PE7dUkCj4zWe3/N64uM+KEKaAQ=
+github.com/gospider007/ja3 v0.0.0-20260429082045-f0b286273a19 h1:XCKNr86+e14rkUXcxemDoS3MnVZxYx54EBbvfYgE9Po=
+github.com/gospider007/ja3 v0.0.0-20260429082045-f0b286273a19/go.mod h1:Iq9xhDmbGV46Z+Eq0PE7dUkCj4zWe3/N64uM+KEKaAQ=
 github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8 h1:EivYaFLOylV33Q5aRkF/cwkisOkDVDWLJ5CXfHYz5mU=
 github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8/go.mod h1:+DxImhsKjwFWM5qTeuWSsh6q6Rax+H0fN3QcuoJZos8=
 github.com/gospider007/netx v0.0.0-20260429003027-c1473b204347 h1:zXoM1rOPxJc2jHRFfLGtUkMl10XAZd74+f9AusdzySs=
@@ -78,8 +78,8 @@ github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab h1:LEp9NN4EMV9GuTWn
 github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab/go.mod h1:xYLm4YDIRVrfBHbWrVuXzsq8F5JeMjWrZQxApYOXcg4=
 github.com/gospider007/requests v0.0.0-20260429003047-79950c4a0ce5 h1:j/tkZVo34RrlfcJ5K/SbcX7r69GIOPUjMKO5ctyed8A=
 github.com/gospider007/requests v0.0.0-20260429003047-79950c4a0ce5/go.mod h1:GdYFacOW1IdYCy7ujLPFYv15TNkgvYfmkE8HCLQZbUU=
-github.com/gospider007/tools v0.0.0-20260428065035-959b2c088295 h1:MWr2gEXnSXsx+jNJs5x6PPad9QcpV/OvG0l8JWABMGM=
-github.com/gospider007/tools v0.0.0-20260428065035-959b2c088295/go.mod h1:26yS6jsOxY74zZ0phkp9u2z8j2AQ5EiXFQPic14pLew=
+github.com/gospider007/tools v0.0.0-20260429030501-b847eabb3828 h1:YE0msSQlJ4MjVZjXiIjc4/yfP9eZliLj/kz9VE/zdyg=
+github.com/gospider007/tools v0.0.0-20260429030501-b847eabb3828/go.mod h1:26yS6jsOxY74zZ0phkp9u2z8j2AQ5EiXFQPic14pLew=
 github.com/gospider007/websocket v0.0.0-20260428065249-8ebc0fc77174 h1:JhG/njIHMkcY5bTqrW2EuGu3r/mxvyjwlb65ilQxkTU=
 github.com/gospider007/websocket v0.0.0-20260428065249-8ebc0fc77174/go.mod h1:WbMArtOtbTnohkwuJBcnmTVvlcsh+61d8y5aTsY7u4o=
 github.com/hashicorp/golang-lru/v2 v2.0.7 h1:a+bsQ5rvGLjzHuww6tVxozPZFVghXaHOwFs4luLUK2k=

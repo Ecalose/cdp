@@ -20,6 +20,7 @@ func (obj *WebSock) PageAddScriptToEvaluateOnNewDocument(ctx context.Context, so
 		Params: map[string]any{
 			"source":         source,
 			"runImmediately": true, //立即运行
+			// "includeCommandLineAPI": true,
 		},
 	})
 }

@@ -2,6 +2,7 @@ package cdp
 
 import (
 	"context"
+	"strings"
 )
 
 func (obj *WebSock) TargetCreateTarget(ctx context.Context, browserContextId string, url string) (RecvData, error) {
@@ -65,6 +66,7 @@ func (obj *WebSock) TargetCreateBrowserContext(ctx context.Context, proxyServer 
 	}
 	if proxyServer != "" {
 		params["proxyServer"] = proxyServer
+		params["originsWithUniversalNetworkAccess"] = []string{proxyServer, strings.ReplaceAll(proxyServer, "http", "https")}
 		params["proxyBypassList"] = "<-loopback>"
 	}
 	return obj.send(ctx, commend{

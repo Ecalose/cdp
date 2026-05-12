@@ -333,11 +333,9 @@ type FulData struct {
 func (obj FulData) Cookies() (requests.Cookies, error) {
 	cookies := []*http.Cookie{}
 	for _, cook := range obj.Headers.Values("Set-Cookie") {
-		result, err := http.ParseSetCookie(cook)
-		if err != nil {
-			return nil, err
+		if result, err := http.ParseSetCookie(cook); err == nil {
+			cookies = append(cookies, result)
 		}
-		cookies = append(cookies, result)
 	}
 	return cookies, nil
 }

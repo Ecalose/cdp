@@ -15,7 +15,7 @@ require (
 	github.com/Masterminds/semver/v3 v3.5.0 // indirect
 	github.com/PuerkitoBio/goquery v1.12.0 // indirect
 	github.com/andybalholm/brotli v1.2.1 // indirect
-	github.com/andybalholm/cascadia v1.3.3 // indirect
+	github.com/andybalholm/cascadia v1.3.4 // indirect
 	github.com/caddyserver/certmagic v0.25.3 // indirect
 	github.com/caddyserver/zerossl v0.1.5 // indirect
 	github.com/gaukas/clienthellod v0.4.2 // indirect
@@ -26,7 +26,7 @@ require (
 	github.com/gobwas/ws v1.4.0 // indirect
 	github.com/golang/snappy v1.0.0 // indirect
 	github.com/google/gopacket v1.1.19 // indirect
-	github.com/google/pprof v0.0.0-20260507013755-92041b743c96 // indirect
+	github.com/google/pprof v0.0.0-20260604005048-7023385849c0 // indirect
 	github.com/gospider007/bar v0.0.0-20260428065104-305d919b2224 // indirect
 	github.com/gospider007/blog v0.0.0-20260428065025-f3c72a6a8a13 // indirect
 	github.com/gospider007/bs4 v0.0.0-20260602103245-fe1b97f6197b // indirect
@@ -64,7 +64,7 @@ require (
 	go.uber.org/zap v1.28.0 // indirect
 	go.uber.org/zap/exp v0.3.0 // indirect
 	golang.org/x/crypto v0.52.0 // indirect
-	golang.org/x/exp v0.0.0-20260529124908-c761662dc8c9 // indirect
+	golang.org/x/exp v0.0.0-20260603202125-055de637280b // indirect
 	golang.org/x/image v0.41.0 // indirect
 	golang.org/x/mod v0.36.0 // indirect
 	golang.org/x/net v0.55.0 // indirect

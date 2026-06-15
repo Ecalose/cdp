@@ -6,13 +6,17 @@ import (
 )
 
 func (obj *WebSock) TargetCreateTarget(ctx context.Context, browserContextId string, url string) (RecvData, error) {
+	params := map[string]any{
+		"url":            url,
+		"transitionType": "address_bar",
+		"background":     true,
+	}
+	if browserContextId != "" {
+		params["browserContextId"] = browserContextId
+	}
 	return obj.send(ctx, commend{
 		Method: "Target.createTarget",
-		Params: map[string]any{
-			"browserContextId": browserContextId,
-			"url":              url,
-			"transitionType":   "address_bar",
-		},
+		Params: params,
 	})
 }
 func (obj *WebSock) TargetCloseTarget(targetId string) (RecvData, error) {

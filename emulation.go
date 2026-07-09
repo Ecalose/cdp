@@ -10,9 +10,13 @@ import (
 // 设置userAgent
 func (obj *WebSock) EmulationSetUserAgentOverride(preCtx context.Context, userAgent string, acceptLanguage string, platform string, userAgentData UserAgentData) (RecvData, error) {
 	params := map[string]any{
-		"userAgent":         userAgent,
-		"platform":          platform,
 		"userAgentMetadata": userAgentData,
+	}
+	if platform != "" {
+		params["platform"] = platform
+	}
+	if userAgent != "" {
+		params["userAgent"] = userAgent
 	}
 	if acceptLanguage != "" {
 		params["acceptLanguage"] = acceptLanguage

@@ -3,12 +3,12 @@ module github.com/gospider007/cdp
 go 1.26.0
 
 require (
-	github.com/gospider007/gson v0.0.0-20260713095134-476e86d28131
-	github.com/gospider007/netx v0.0.0-20260713095134-2067252adfd6
+	github.com/gospider007/gson v0.0.0-20260713095227-03d10a4e9883
+	github.com/gospider007/netx v0.0.0-20260713095235-3cf1c16679d9
 	github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab
-	github.com/gospider007/requests v0.0.0-20260713095134-94dea63de2ba
+	github.com/gospider007/requests v0.0.0-20260713095234-eefe9e2213db
 	github.com/gospider007/tools v0.0.0-20260713095134-a0365783c81c
-	github.com/gospider007/websocket v0.0.0-20260713095133-440afe44bb19
+	github.com/gospider007/websocket v0.0.0-20260713095230-c0d3213c6af6
 )
 
 require (
@@ -30,12 +30,12 @@ require (
 	github.com/gospider007/bar v0.0.0-20260428065104-305d919b2224 // indirect
 	github.com/gospider007/blog v0.0.0-20260428065025-f3c72a6a8a13 // indirect
 	github.com/gospider007/bs4 v0.0.0-20260713095228-625a0265d428 // indirect
-	github.com/gospider007/conf v0.0.0-20260713095127-f62bc65e35dd // indirect
-	github.com/gospider007/gtls v0.0.0-20260713095134-a3866d30c09c // indirect
-	github.com/gospider007/http1 v0.0.0-20260713095134-e988d07c0023 // indirect
-	github.com/gospider007/http2 v0.0.0-20260713095134-b6b84ccf5d5f // indirect
-	github.com/gospider007/http3 v0.0.0-20260713095134-83c757e70998 // indirect
-	github.com/gospider007/ja3 v0.0.0-20260713095134-1d36c9d2dea2 // indirect
+	github.com/gospider007/conf v0.0.0-20260713095226-6eca78280ce9 // indirect
+	github.com/gospider007/gtls v0.0.0-20260713095230-de9c7550a475 // indirect
+	github.com/gospider007/http1 v0.0.0-20260713095227-5f5c9fd973f8 // indirect
+	github.com/gospider007/http2 v0.0.0-20260713095230-af1674e57d54 // indirect
+	github.com/gospider007/http3 v0.0.0-20260713095234-f2c0b5fb9839 // indirect
+	github.com/gospider007/ja3 v0.0.0-20260713095230-15a15c149eba // indirect
 	github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8 // indirect
 	github.com/hashicorp/golang-lru/v2 v2.0.7 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect

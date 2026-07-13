@@ -4,9 +4,9 @@ go 1.26.0
 
 require (
 	github.com/gospider007/gson v0.0.0-20260713094922-5013cda49f08
-	github.com/gospider007/netx v0.0.0-20260713094952-127faff4a1c5
+	github.com/gospider007/netx v0.0.0-20260713095034-89ff4169196d
 	github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab
-	github.com/gospider007/requests v0.0.0-20260713095010-e9eff2607feb
+	github.com/gospider007/requests v0.0.0-20260713095057-78393bdde177
 	github.com/gospider007/tools v0.0.0-20260713094752-adf752771c22
 	github.com/gospider007/websocket v0.0.0-20260713095002-9ef4e38471c1
 )
@@ -29,7 +29,7 @@ require (
 	github.com/google/pprof v0.0.0-20260709232956-b9395ee17fa0 // indirect
 	github.com/gospider007/bar v0.0.0-20260428065104-305d919b2224 // indirect
 	github.com/gospider007/blog v0.0.0-20260428065025-f3c72a6a8a13 // indirect
-	github.com/gospider007/bs4 v0.0.0-20260713094922-21bc7c5eed24 // indirect
+	github.com/gospider007/bs4 v0.0.0-20260713095134-de38aa1608e4 // indirect
 	github.com/gospider007/conf v0.0.0-20260713094914-4b2f48fa0590 // indirect
 	github.com/gospider007/gtls v0.0.0-20260713094947-9436cdd4bf9a // indirect
 	github.com/gospider007/http1 v0.0.0-20260713094922-f6fc4ee87588 // indirect
@@ -45,7 +45,7 @@ require (
 	github.com/mholt/acmez/v3 v3.1.6 // indirect
 	github.com/miekg/dns v1.1.72 // indirect
 	github.com/mileusna/useragent v1.3.5 // indirect
-	github.com/minio/minlz v1.1.1 // indirect
+	github.com/minio/minlz v1.2.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.3-0.20250322232337-35a7c28c31ee // indirect
 	github.com/onsi/ginkgo/v2 v2.32.0 // indirect

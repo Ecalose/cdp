@@ -194,14 +194,12 @@ func (obj *WebSock) send(preCtx context.Context, cmd commend) (RecvData, error) 
 		if err == nil {
 			err = context.Cause(obj.ctx)
 		}
-		obj.CloseWithError(err)
 		return RecvData{}, err
 	case <-ctx.Done():
 		err := obj.Error()
 		if err == nil {
 			err = context.Cause(ctx)
 		}
-		obj.CloseWithError(err)
 		return RecvData{}, err
 	case idRecvData := <-idEvent:
 		if idRecvData.Error != nil {

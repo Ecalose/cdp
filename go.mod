@@ -8,7 +8,7 @@ require (
 	github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab
 	github.com/gospider007/requests v0.0.0-20260715091325-024197cf3284
 	github.com/gospider007/tools v0.0.0-20260715090848-9caf3c974ea0
-	github.com/gospider007/websocket v0.0.0-20260715091118-f019c46d783d
+	github.com/gospider007/websocket v0.0.0-20260716014654-2e7cf03a1f00
 )
 
 require (

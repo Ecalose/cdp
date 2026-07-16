@@ -83,8 +83,8 @@ github.com/gospider007/thread v0.0.0-20260715073649-94b15f3ca99e h1:mpYeEyNGAg8/
 github.com/gospider007/thread v0.0.0-20260715073649-94b15f3ca99e/go.mod h1:kLeU2ztXe6Wgp2ZxHglpnflFNWDkxaji0EUFRrcFYfs=
 github.com/gospider007/tools v0.0.0-20260715090848-9caf3c974ea0 h1:dGPO3udMqh0vzMalGcMs2sxFgAd8JfZfEMk3U6dg4YU=
 github.com/gospider007/tools v0.0.0-20260715090848-9caf3c974ea0/go.mod h1:nCzVB/cDAv9GAPG7vCgUWOQoef1/mVRPzAuTQNv5hBw=
-github.com/gospider007/websocket v0.0.0-20260715091118-f019c46d783d h1:ILuqGUfMWDS8yrwhjV82FMxyPz54mBd3fAVurxYLbio=
-github.com/gospider007/websocket v0.0.0-20260715091118-f019c46d783d/go.mod h1:chrMQ7FgBuwWTA+VOkvkJTrunYyU37BewQqM11tap8I=
+github.com/gospider007/websocket v0.0.0-20260716014654-2e7cf03a1f00 h1:uva0eAE9O6zNfNFo5y0pS3TfBtkRi4KeHgsbAmd4Dg8=
+github.com/gospider007/websocket v0.0.0-20260716014654-2e7cf03a1f00/go.mod h1:chrMQ7FgBuwWTA+VOkvkJTrunYyU37BewQqM11tap8I=
 github.com/hashicorp/golang-lru/v2 v2.0.7 h1:a+bsQ5rvGLjzHuww6tVxozPZFVghXaHOwFs4luLUK2k=
 github.com/hashicorp/golang-lru/v2 v2.0.7/go.mod h1:QeFd9opnmA6QUJc5vARoKUSoFhyfM2/ZepoAG6RGpeM=
 github.com/joshdk/go-junit v1.0.0 h1:S86cUKIdwBHWwA6xCmFlf3RTLfVXYQfvanM5Uh+K6GE=

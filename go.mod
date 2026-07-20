@@ -4,9 +4,9 @@ go 1.26.0
 
 require (
 	github.com/gospider007/gson v0.0.0-20260715091036-4e472c9a7262
-	github.com/gospider007/netx v0.0.0-20260720095525-b9c63bffb916
+	github.com/gospider007/netx v0.0.0-20260720095644-035dedab6ac7
 	github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab
-	github.com/gospider007/requests v0.0.0-20260720095533-b95fccd4afdf
+	github.com/gospider007/requests v0.0.0-20260720095644-380411f69968
 	github.com/gospider007/tools v0.0.0-20260715090848-9caf3c974ea0
 	github.com/gospider007/websocket v0.0.0-20260716014654-2e7cf03a1f00
 )

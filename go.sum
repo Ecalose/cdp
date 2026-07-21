@@ -73,12 +73,12 @@ github.com/gospider007/ja3 v0.0.0-20260720134950-a77f25e013f9 h1:x8wizD7mJ+dK1YB
 github.com/gospider007/ja3 v0.0.0-20260720134950-a77f25e013f9/go.mod h1:zNY7Xf2Q/ub0nGUwrO2uDh4Ul+l8sRy7jnNkDgHmsNM=
 github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8 h1:EivYaFLOylV33Q5aRkF/cwkisOkDVDWLJ5CXfHYz5mU=
 github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8/go.mod h1:+DxImhsKjwFWM5qTeuWSsh6q6Rax+H0fN3QcuoJZos8=
-github.com/gospider007/netx v0.0.0-20260721144914-fdf1599600c7 h1:6XuDiDUnJLQENUDiLT6j3I74/aGbOBQw2G0ElCxPx3M=
-github.com/gospider007/netx v0.0.0-20260721144914-fdf1599600c7/go.mod h1:7H6vJXx1ig+mSzLTd3Vp3tVd3NJWUqfVwe+dJis6FJw=
+github.com/gospider007/netx v0.0.0-20260721144935-7555a2c500f7 h1:9DUhynihbkZJ+8MGyQLi0//+CsrGIbWzHaWs5GH3OQc=
+github.com/gospider007/netx v0.0.0-20260721144935-7555a2c500f7/go.mod h1:L+/Rv8JNz9pPo0aDnCFM057ny17zy8pVra66tvImraQ=
 github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab h1:LEp9NN4EMV9GuTWnXRN4eiiUAjpCEq2Z4HpVgTQx0JY=
 github.com/gospider007/re v0.0.0-20260227072205-6223d82a3dab/go.mod h1:xYLm4YDIRVrfBHbWrVuXzsq8F5JeMjWrZQxApYOXcg4=
-github.com/gospider007/requests v0.0.0-20260721144916-02051d66da16 h1:XQHfpgbrWlgdkblRUuOeiMbXVu8d+sgT8tgABmYZZTU=
-github.com/gospider007/requests v0.0.0-20260721144916-02051d66da16/go.mod h1:pBBEL3MJf2VG2bZP/gNtOx2J5rE+w8uq/PzkrKw4Ajg=
+github.com/gospider007/requests v0.0.0-20260721144951-134f743a609c h1:OqF56vxboyVNPvrBCiLTt5vGPO/xsIaUJPqvhtjR1cY=
+github.com/gospider007/requests v0.0.0-20260721144951-134f743a609c/go.mod h1:KRXzm0rcdnDd8bsN9MQa8cwuRsEn4IRXjjOwrwX8za0=
 github.com/gospider007/thread v0.0.0-20260715073649-94b15f3ca99e h1:mpYeEyNGAg8/erXscxoLELdz/2KCc+DDIuKDJ7NskSg=
 github.com/gospider007/thread v0.0.0-20260715073649-94b15f3ca99e/go.mod h1:kLeU2ztXe6Wgp2ZxHglpnflFNWDkxaji0EUFRrcFYfs=
 github.com/gospider007/tools v0.0.0-20260720134718-b120c34e17d2 h1:lzvuSoY03ViczAsZYTIXYGrqIbCIvpn/qc64W7CMI/8=

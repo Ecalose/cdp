@@ -33,7 +33,7 @@ require (
 	github.com/gospider007/chanx v0.0.0-20260211054348-1dfd65a36494 // indirect
 	github.com/gospider007/conf v0.0.0-20260720134945-cff12ad9c3af // indirect
 	github.com/gospider007/gtls v0.0.0-20260720135223-33f66df70059 // indirect
-	github.com/gospider007/http1 v0.0.0-20260720134950-0faae79726a8 // indirect
+	github.com/gospider007/http1 v0.0.0-20260721144808-e3554025ebf9 // indirect
 	github.com/gospider007/http2 v0.0.0-20260720135059-ada97b2a19e2 // indirect
 	github.com/gospider007/http3 v0.0.0-20260720135059-1a2da4a3e213 // indirect
 	github.com/gospider007/ja3 v0.0.0-20260720134950-a77f25e013f9 // indirect
